@@ -1,0 +1,86 @@
+@use "../abstracts/colors" as c;
+@use "../abstracts/fonts" as f;
+@use "../abstracts/functions" as *;
+@use "../abstracts/mixins" as *;
+
+.body {
+    @include max-media(lg) {
+        padding-top: rem(72);
+    }
+}
+
+.section {
+    position: relative;
+    padding: 10rem 0;
+    width: 100%;
+    @include max-media(md) {
+        padding: 4rem 0;
+    }
+    &-header {
+        margin-bottom: 7.5rem;
+        position: relative;
+        @include max-media(md) {
+            margin-bottom: 5rem;
+        }
+        &-small {
+            margin-bottom: 3.5rem;
+        }
+        &.centered {
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        &, &-small {
+            h1, h2, h3 {
+                margin-top: 0;
+                margin-bottom: 0;
+            }
+        }
+        p {
+            margin-bottom: 0;
+        }
+    }
+    &-footer {
+        margin-top: 7.5rem;
+        position: relative;
+        @include max-media(md) {
+            margin-top: 5rem;
+        }
+        &-small {
+            margin-top: 3.5rem;
+        }
+        &.centered {
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        &, &-small {
+            h1, h2, h3 {
+                margin-top: 0;
+                margin-bottom: 0;
+            }
+        }
+        p {
+            margin-bottom: 0;
+        }
+    }
+    &-strip {
+        padding: 7.5rem 0;
+        @include max-media(md) {
+            padding: 4rem 0;
+        }
+        .section-title {
+            margin-bottom: 0;
+        }
+    }
+
+    &-purple {
+        background-color: c.$purple;
+        h1, h2, h3, h4, h5, h6, p {
+            color: c.$white;
+        }
+        .section-title {
+            color: c.$white;
+        }
+    }
+}

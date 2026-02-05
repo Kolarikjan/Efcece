@@ -1,0 +1,75 @@
+@use "../abstracts/colors" as c;
+@use "../abstracts/radiuses" as r;
+@use "../abstracts/functions" as *;
+@use "../abstracts/mixins" as *;
+
+.header-toggler {
+    width: rem(44);
+    aspect-ratio: 1/1;
+    border-radius: r.$small;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .15s;
+    padding: .25rem;
+    box-shadow: none !important;
+    margin-left: auto;
+    display: none;
+    @include max-media(lg) {
+        display: flex;
+        margin-right: rem(-8);
+    }
+    &, .animated-icon span {
+    transition: background-color 0.25s;
+    }
+    &:hover, &.active {
+        background-color: c.$white;
+        .animated-icon span {
+            background-color: c.$black;
+        }
+    }
+    .animated-icon {
+        width: rem(26);
+        height: rem(36);
+        margin: 0;
+        transform: rotate(0deg);
+        cursor: pointer;
+        transition: .5s ease-in-out;
+        display: block;
+        span {
+            display: block;
+            position: absolute;
+            height: 2px;
+            width: 100%;
+            border-radius: 0;
+            opacity: 1;
+            left: 0;
+            transform: rotate(0deg);
+            transition: .25s ease-in-out;
+            background: c.$white;
+            &:nth-child(1) {
+                top: 8px;
+            }
+            &:nth-child(2) {
+                top: 17px;
+            }
+            &:nth-child(3) {
+                top: 26px;
+            }
+        }
+    }
+    &.active .animated-icon span {
+        &:nth-child(1) {
+            top: 17px;
+            transform: rotate(135deg);
+        }
+        &:nth-child(2) {
+            opacity: 0;
+            left: -20px;
+        }
+        &:nth-child(3) {
+            top: 17px;
+            transform: rotate(-135deg);
+        }
+    }
+}

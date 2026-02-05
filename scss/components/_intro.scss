@@ -1,0 +1,64 @@
+@use "../abstracts/colors" as c;
+@use "../abstracts/fonts" as f;
+@use "../abstracts/radiuses" as r;
+@use "../abstracts/functions" as *;
+@use "../abstracts/mixins" as *;
+
+.intro {
+    &-wrapper {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10rem;
+        @include max-media(xxl) {
+            gap: 6rem;
+        }
+        @include max-media(lg) {
+            grid-template-columns: minmax(0, 1fr);
+            gap: 4rem;
+        }
+    }
+
+    &-badge {
+        flex-shrink: 0;
+        background-color: c.$purple-dark;
+        max-width: 425px;
+        width: 100%;
+        aspect-ratio: 1/1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: r.$medium;
+        color: lighten(c.$purple-light, 25%);
+        text-align: center;
+        padding: 4rem;
+        @include max-media(lg) {
+            margin: 0 auto;
+            max-width: 375px;
+        }
+        &-text {
+            font-size: rem(85);
+            font-weight: 600;
+            line-height: 1;
+            @include max-media(lg) {
+                font-size: rem(70);
+            }
+        }
+    }
+
+    &-text {
+        text-align: right;
+        @include max-media(lg) {
+            text-align: center;
+        }
+        &-title {
+            max-width: 310px;
+            margin-left: auto;
+            @include max-media(lg) {
+                margin-right: auto;
+            }
+        }
+        &-content {
+            padding-bottom: .5rem;
+        }
+    }
+}

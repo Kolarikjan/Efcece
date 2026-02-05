@@ -1,0 +1,155 @@
+@use "../abstracts/colors" as c;
+@use "../abstracts/fonts" as f;
+@use "../abstracts/radiuses" as r;
+@use "../abstracts/functions" as *;
+@use "../abstracts/mixins" as *;
+
+.button {
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    text-align: center;
+    border-radius: r.$max;
+    font-weight: 600;
+    font-size: rem(28);
+    line-height: 1.4;
+    padding: 1rem 2.75rem;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: color 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), border-color 0.4s ease;
+    img, svg {
+        flex-shrink: 0;
+        transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        margin-left: rem(10);
+    }
+    @include max-media(md) {
+        padding: .75rem 2rem;
+        font-size: rem(18);
+    }
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    &:hover {
+        &::before {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        img, svg {
+            transform: translateX(rem(5));
+        }
+    }
+
+    &-white {
+        color: c.$purple-dark;
+        background-color: c.$white;
+        &::before {
+            background-color: c.$purple-dark;
+        }
+        &:hover {
+            color: c.$purple-dark;
+            border-color: c.$black;
+        }
+        &.text-red {
+            color: c.$red;
+        }
+        &.text-putple {
+            color: c.$purple;
+        }
+    }
+    &-black {
+        color: c.$white;
+        background-color: c.$black;
+        &::before {
+            background-color: c.$white;
+        }
+        &:hover {
+            color: c.$black;
+            border-color: c.$black;
+        }
+    }
+    &-purple {
+        color: c.$white;
+        background-color: c.$purple;
+        &::before {
+            background-color: c.$white;
+        }
+        &:hover {
+            color: c.$purple;
+            border-color: c.$white;
+        }
+    }
+    &-grey {
+        border: rem(1) solid c.$gray-light;
+        color: c.$black;
+        background-color: c.$gray-light;
+        &::before {
+            background-color: c.$black;
+        }
+        &:hover {
+            color: c.$white;
+            border-color: c.$black;
+        }
+    }
+    &-link {
+        padding: 0;
+        background: none;
+        border: none;
+        color: c.$black;
+        font-weight: 600;
+        font-size: 1rem;
+        overflow: visible;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: .5rem;
+        &::before {
+            display: none;
+        }
+        &-plus {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: rem(30);
+            height: rem(30);
+            border-radius: r.$circle;
+            border: rem(1) solid c.$black;
+            background-color: transparent;
+            color: c.$black;
+            font-size: rem(26);
+            font-weight: 400;
+            line-height: 1;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            span {
+                display: block;
+                margin-top: rem(-3);
+            }
+        }
+        &:hover {
+            color: c.$purple-dark;
+            .button-link-plus {
+                color: c.$white;
+                background-color: c.$purple-dark;
+                border-color: c.$purple-dark;
+            }
+        }
+    }
+}

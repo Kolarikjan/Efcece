@@ -1,0 +1,24 @@
+@use "../abstracts/colors" as c;
+@use "../abstracts/fonts" as f;
+@use "../abstracts/radiuses" as r;
+@use "../abstracts/functions" as *;
+@use "../abstracts/mixins" as *;
+
+.cta {
+    &-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 2.75rem;
+        @include max-media(md) {
+            flex-direction: column;
+            text-align: center;
+            gap: 1.75rem;
+        }
+    }
+
+    &-title {
+        margin: 0;
+    }
+}

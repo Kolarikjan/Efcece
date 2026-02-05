@@ -1,0 +1,213 @@
+@use "../abstracts/colors" as c;
+@use "../abstracts/fonts" as f;
+@use "../abstracts/functions" as *;
+@use "../abstracts/mixins" as *;
+
+::selection {
+    background-color: c.$purple-dark;
+    filter: opacity(.75);
+    color: c.$white;
+}
+* {
+    box-sizing: border-box;
+    scroll-margin-top: 4rem;
+    @include max-media(md) {
+        scroll-margin-top: 2.5rem;
+    }
+}
+img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+html {
+    scroll-behavior: smooth;
+}
+body {
+    overflow-x: hidden;
+    background-color: c.$white;
+    color: c.$black;
+    font-family: f.$yellix;
+    font-size: rem(18);
+    font-weight: 400;
+    line-height: 1.6;
+    @include max-media(lg) {
+        text-align: center;
+        font-size: rem(17);
+    }
+}
+a {
+    transition-duration: .15s;
+    text-decoration: none;
+    color: c.$black;
+    text-decoration: underline;
+    text-underline-offset: rem(3);
+    &:hover {
+        color: c.$gray;
+    }
+}
+.no-scroll {
+  overflow: hidden;
+}
+.body {
+    ul {
+        list-style:disc;
+    }
+    ol {
+        list-style:decimal;
+    }
+    ul, ol {
+        margin-bottom: 2rem;
+        padding-left: 1.25rem;
+        @include max-media(md) {
+            text-align: left;
+        }
+        li {
+            &::marker {
+                color: c.$black;
+            }
+        }
+    }
+}
+h1,h2,h3,h4,h5,h6 {
+    color: c.$black;
+    font-family: f.$yellix;
+    line-height: 1.15;
+    font-weight: 600;
+}
+h1, .as-h1 {
+    font-size: rem(100);
+    margin-top: 3.5rem;
+    margin-bottom: 2.5rem;
+    line-height: 1.05;
+    letter-spacing: rem(-2);
+    @include max-media(xxl) {
+        font-size: rem(80);
+    }
+    @include max-media(lg) {
+        font-size: rem(60);
+    }
+    @include max-media(sm) {
+        font-size: rem(40);
+    }
+}
+h2, .as-h2 {
+    font-size: rem(80);
+    margin-top: 3.5rem;
+    margin-bottom: 3rem;
+    letter-spacing: rem(-1.5);
+    @include max-media(xxl) {
+        font-size: rem(70);
+    }
+    @include max-media(md) {
+        font-size: rem(42);
+        line-height: 1.2;
+        margin-top: 2.5rem;
+        margin-bottom: 1.75rem;
+    }
+}
+h3, .as-h3 {
+    font-size: rem(60);
+    margin-top: 3.5rem;
+    margin-bottom: 2.25rem;
+    letter-spacing: rem(-1.25);
+    @include max-media(xxl) {
+        font-size: rem(50);
+    }
+    @include max-media(md) {
+        font-size: rem(32);
+        line-height: 1.2;
+        margin-top: 2.5rem;
+        margin-bottom: 1.5rem;
+    }
+}
+h4, .as-h4 {
+    font-size: rem(40);
+    margin-top: 3.5rem;
+    margin-bottom: 2.25rem;
+    letter-spacing: rem(-1);
+    @include max-media(md) {
+        font-size: rem(26);
+        line-height: 1.2;
+        margin-top: 2.5rem;
+        margin-bottom: 1.5rem;
+    }
+}
+h5, h6 {
+    font-size: rem(30);
+    margin-top: 3.5rem;
+    margin-bottom: 1.75rem;
+    letter-spacing: rem(-.75);
+    @include max-media(md) {
+        font-size: rem(20);
+        line-height: 1.2;
+        margin-top: 2.5rem;
+        margin-bottom: 1.5rem;
+    }
+}
+p {
+    margin-bottom: 2rem;
+    @include max-media(md) {
+        margin-bottom: 1.5rem;
+    }
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+strong, b {
+    font-weight: 600;
+    color: c.$primary;
+}
+iframe {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16/9;
+}
+table {
+    width: 100%;
+    overflow-y: scroll;
+    &:not(:first-child) {
+        margin-top: 3.5rem;
+    }
+    &:not(:last-child) {
+        margin-bottom: 2rem;
+    }
+    tr {
+        & > th {
+            background-color: c.$purple-dark !important;
+            padding: 1rem 1.5rem;
+            border: 0;
+            color: c.$white;
+            font-weight: 700;
+        }
+        & > td {
+            background-color: c.$white;
+            padding: 1rem 1.5rem;
+            border: 0;
+        }
+        &:nth-child(even) > td {
+            background-color: c.$purple-light;
+        }
+        &:not(:last-child) > td {
+            border-bottom: 0 !important;
+        }
+    }
+}
+.container {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    @include min-media(xxl) {
+        max-width: 1200px;
+    }
+    &-extended {
+        @include min-media(xl) {
+            padding-left: 2.25rem;
+            padding-right: 2.25rem;
+        }
+        @include min-media(xxl) {
+            max-width: 1920px;
+            padding-left: 5.25rem;
+            padding-right: 5.25rem;
+        }
+    }
+}

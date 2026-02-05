@@ -1,0 +1,107 @@
+@use "../abstracts/colors" as c;
+@use "../abstracts/fonts" as f;
+@use "../abstracts/radiuses" as r;
+@use "../abstracts/functions" as *;
+@use "../abstracts/mixins" as *;
+
+.faq {
+    &-content {
+        padding: rem(80) 0;
+        background-color: c.$white;
+
+        @include max-media(md) {
+            padding: rem(50) 0;
+        }
+    }
+
+    &-list {
+        max-width: rem(900);
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: rem(20);
+    }
+
+    &-item {
+        border-bottom: rem(1) solid c.$gray-light;
+        padding-bottom: rem(20);
+
+        &.active {
+            .faq-item-question {
+                color: c.$purple-dark;
+                
+                &-icon {
+                    transform: rotate(45deg);
+                    color: c.$purple-dark;
+                }
+            }
+            
+            // Když je aktivní, vnitřní obsah se zviditelní
+            .faq-item-answer-content {
+                opacity: 1;
+                transform: translateY(0);
+                transition-delay: 0.1s; // Malé zpoždění, ať se stihne začít otevírat box
+            }
+        }
+
+        &-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-size: rem(20);
+            font-weight: 600;
+            padding: rem(10) 0;
+            transition: color 0.3s ease;
+            position: relative;
+            z-index: 2;
+            background-color: c.$white; // Aby překryl vyjíždějící text
+
+            @include max-media(md) {
+                font-size: rem(18);
+            }
+
+            &-icon {
+                font-size: rem(30);
+                font-weight: 300;
+                line-height: 1;
+                transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s ease;
+            }
+
+            &:hover {
+                color: c.$purple-dark;
+            }
+        }
+
+        &-answer {
+            height: 0;
+            overflow: hidden;
+            transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            
+            &-content {
+                // Padding přesunut sem pro plynulost
+                padding-top: rem(10);
+                padding-bottom: rem(10);
+                padding-right: rem(40);
+                
+                // Startovací stav pro animaci textu
+                opacity: 0;
+                transform: translateY(rem(15));
+                transition: opacity 0.4s ease, transform 0.4s ease;
+
+                p {
+                    margin: 0;
+                    color: c.$gray;
+                    line-height: 1.6;
+                    font-size: rem(16);
+                }
+            }
+        }
+    }
+
+    &-footer {
+        margin-top: rem(50);
+        display: flex;
+        justify-content: center;
+    }
+}

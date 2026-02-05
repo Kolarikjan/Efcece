@@ -1,0 +1,150 @@
+@use "../abstracts/colors" as c;
+@use "../abstracts/fonts" as f;
+@use "../abstracts/radiuses" as r;
+@use "../abstracts/functions" as *;
+@use "../abstracts/mixins" as *;
+
+.categories {
+    &-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 2.5rem;
+        @include max-media("sm") {
+            gap: 1.25rem;
+        }
+    }
+    &-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: stretch;
+        text-decoration: none;
+        border-radius: r.$medium;
+        overflow: hidden;
+        min-height: rem(275);
+        transition: all 0.25s ease-in-out;
+        position: relative;
+        gap: .5rem;
+        @include max-media("lg") {
+            flex-direction: column;
+        }
+        $theme-colors: (
+            "purple": c.$purple,
+            "red": c.$red,
+            "green": c.$green,
+            "blue": c.$blue,
+            "gray": c.$gray,
+            "orange": c.$orange
+        );
+        &:hover {
+            .categories-item-link {
+                background-color: c.$white;
+                color: c.$black;
+            }
+
+            @each $name, $color in $theme-colors {
+                .categories-item-info.color-#{$name} .categories-item-link svg {
+                    fill: $color;
+                }
+            }
+        }
+        &-info {
+            position: relative;
+            flex: 1;
+            padding: 2.5rem 6.25rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            z-index: 1;
+            @include max-media("xl") {
+                padding: 2.5rem 2.75rem;
+            }
+            @include max-media("lg") {
+                border-right: 0;
+                gap: 1rem;
+                padding: 2rem 1rem 1.5rem;
+            }
+            @include max-media("md") {
+                gap: .75rem;
+            }
+            h3 {
+                margin: -1rem 0 0;
+                color: c.$white;
+                @include max-media("lg") {
+                    margin: 0;
+                }
+            }
+            @each $name, $color in $theme-colors {
+                &.color-#{$name} {
+                    background-color: $color;
+                }
+            }
+        }
+
+        &-link {
+            position: absolute;
+            bottom: 1.75rem;
+            left: 1.75rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-weight: 500;
+            color: c.$white;
+            padding: .5rem 1.5rem .5rem .75rem;
+            border-radius: r.$max;
+            transition: all 0.25s ease-in-out;
+            width: fit-content;
+            @include max-media("lg") {
+                position: unset;
+                margin: 0 auto;
+            }
+            @include max-media("md") {
+                gap: .5rem;
+                padding: .25rem 1rem .25rem .375rem;
+            }
+            svg {
+                width: 2.75rem;
+                height: 2.75rem;
+                fill: c.$white;
+                transition: all 0.25s ease-in-out;
+                @include max-media("md") {
+                    width: 1.75rem;
+                    height: 1.75rem;
+                }
+            }
+            span {
+                display: block;
+                @include max-media("sm") {
+                    font-size: rem(15);
+                }
+            }
+        }
+
+        &-image {
+            width: 40%;
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+            @include max-media("lg") {
+                width: 100%;
+            }
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                position: absolute;
+                top: 0;
+                right: 0;
+                transition: all 0.25s ease-in-out;
+                @include max-media("lg") {
+                    position: unset;
+                    height: auto;
+                    aspect-ratio: 1.875/1;
+                }
+            }
+        }
+
+        &:hover .categories-item-image img {
+            transform: scale(1.075);
+        }
+    }
+}

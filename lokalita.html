@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <!-- DEFAULTS -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Na Výsluní</title>
+    <!-- FONTS -->
+    <link rel="stylesheet" href="font/Ogilvy/stylesheet.css">
+    <link rel="stylesheet" href="font/New_York/stylesheet.css">
+    <!-- FAVICON -->
+    <link rel="shortcut icon" href="img/logo/favicon.png" type="image/ico">
+    <!-- STYLE -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/fancybox.css"> 
+    <link rel="stylesheet" href="scss/main.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-wrapper">
+                <div class="header-logo">
+                    <a href="index.html" class="header-logo-link">
+                        <span>Na Výsluní</span>
+                    </a>
+                </div>
+                <div class="header-menu">
+                    <a href="#" class="header-menu-close">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" /></svg>
+                    </a>
+                    <ul>
+                        <li class="header-menu-item">
+                            <a href="lokalita.html" class="active">
+                                Lokalita
+                            </a>
+                        </li>
+                        <li class="header-menu-item">
+                            <a href="standardy.html">
+                                Standardy
+                            </a>
+                        </li>
+                        <li class="header-menu-item">
+                            <a href="flats.html">
+                                Byty
+                            </a>
+                        </li>
+                        <li class="header-menu-item">
+                            <a href="gallery.html">
+                                Galerie
+                            </a>
+                        </li>
+                        <li class="header-menu-item">
+                            <a href="subpage.html">
+                                Financování
+                            </a>
+                        </li>
+                        <li class="header-menu-item">
+                            <a href="subpage.html">
+                                Kontakt
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <button class="header-toggler">
+                    <span class="animated-icon"><span></span><span></span><span></span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+    <main class="body">
+        <section class="section map">
+            <div id="map" class="map-frame"></div>
+            <div class="map-controls">
+                <div class="map-controls-toggle">
+                </div>
+                <div class="map-controls-wrapper">
+                    <button id="toggle-skola" class="button button-simple-black active">Škola / Školka</button>
+                    <button id="toggle-nakupy" class="button button-simple-black active">Nákupní centrum</button>
+                    <button id="toggle-restaurace" class="button button-simple-black active">Restaurace</button>
+                    <button id="toggle-sport" class="button button-simple-black active">Sportovní zařízení</button>
+                    <button id="toggle-mhd" class="button button-simple-black active">MHD</button>
+                </div>
+            </div>
+            <script>
+                // === 1. DATA PRO MAPU ===
+                const hlavniBudova = {
+                    lat: 49.0583,
+                    lng: 17.4700,
+                    title: "Na Výsluní"
+                };
+                const icons = {
+                    main: 'https://maps.google.com/mapfiles/kml/shapes/realestate.png',
+                    skola: 'https://maps.google.com/mapfiles/kml/shapes/schools.png',
+                    nakupy: 'https://maps.google.com/mapfiles/kml/shapes/shopping.png',
+                    restaurace: 'https://maps.google.com/mapfiles/kml/shapes/dining.png',
+                    mhd: 'https://maps.google.com/mapfiles/kml/shapes/bus.png'
+                };
+                const bodyZajmu = [
+                    { lat: 49.0590, lng: 17.4715, title: "Základní škola", category: "skola" },
+                    { lat: 49.0575, lng: 17.4720, title: "Mateřská školka", category: "skola" },
+                    { lat: 49.0600, lng: 17.4680, title: "Supermarket Albert", category: "nakupy" },
+                    { lat: 49.0560, lng: 17.4690, title: "Restaurace U Lva", category: "restaurace" },
+                    { lat: 49.0580, lng: 17.4730, title: "Pizzerie", category: "restaurace" },
+                    { lat: 49.0595, lng: 17.4705, title: "Zastávka 'Na Výsluní'", category: "mhd" }
+                ];
+                // === 2. GLOBÁLNÍ PROMĚNNÉ ===
+                let map;
+                let markers = [];
+                let categoryVisibility = {
+                    skola: true,
+                    nakupy: true,
+                    restaurace: true,
+                    mhd: true
+                };
+                // === 3. INICIALIZACE MAPY ===
+                function initMap() {
+                    map = new google.maps.Map(document.getElementById("map"), {
+                        zoom: 16,
+                        center: hlavniBudova,
+                        mapTypeControl: false,
+                        streetViewControl: false
+                    });
+                    const mainMarker = new google.maps.Marker({
+                        position: hlavniBudova,
+                        map: map,
+                        title: hlavniBudova.title,
+                        icon: icons.main,
+                        zIndex: 1000
+                    });
+                    for (const misto of bodyZajmu) {
+                        const marker = new google.maps.Marker({
+                            position: { lat: misto.lat, lng: misto.lng },
+                            map: map,
+                            title: misto.title,
+                            icon: icons[misto.category],
+                            category: misto.category
+                        });
+                        markers.push(marker); 
+                    }
+                    document.getElementById('toggle-skola').addEventListener('click', () => toggleCategory('skola'));
+                    document.getElementById('toggle-nakupy').addEventListener('click', () => toggleCategory('nakupy'));
+                    document.getElementById('toggle-restaurace').addEventListener('click', () => toggleCategory('restaurace'));
+                    document.getElementById('toggle-mhd').addEventListener('click', () => toggleCategory('mhd'));
+                }
+
+                // === 4. FUNKCE PRO FILTROVÁNÍ ===
+                function toggleCategory(category) {
+                    categoryVisibility[category] = !categoryVisibility[category];
+                    const button = document.getElementById(`toggle-${category}`);
+                    button.classList.toggle('active', categoryVisibility[category]);
+                    for (const marker of markers) {
+                        if (marker.category === category) {
+                            marker.setVisible(categoryVisibility[category]);
+                        }
+                    }
+                }
+
+            </script>
+
+            <script async defer
+                src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
+            </script>
+        </section>
+    </main>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-wrapper">
+                <div class="footer-logo">
+                    <a href="#" class="footer-logo-link">
+                        <span>Na Výsluní</span>
+                        <span></span>
+                    </a>
+                </div>
+                <div class="footer-about">
+                    <div class="footer-about-menu">
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" /></svg>
+                                    Lokalita
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" /></svg>
+                                    Standardy
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" /></svg>
+                                    Byty
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" /></svg>
+                                    Galerie
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" /></svg>
+                                    Financování
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" /></svg>
+                                    Kontakt
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-about-contact">
+                        <div class="footer-about-contact-links">
+                            <a href="tel:+420 800 000 800">+420 800 000 800</a>
+                            <a href="mailto:byty@navysluni.com">byty@navysluni.com</a>
+                        </div>
+                        <div class="footer-about-contact-address">
+                            <p>Hoffmann Investments, a.s.</p>
+                            <p>Poštovní 253</p>
+                            <p>686 01  Uherské Hradiště</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="js/jquery-3.6.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/fancybox.umd.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/javascript.js"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+@font-face {
+    font-family: 'Ogilvy Sans';
+    src: url('OgilvySans-Regular.woff2') format('woff2'),
+        url('OgilvySans-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Ogilvy Serif';
+    src: url('OgilvySerif-Regular.woff2') format('woff2'),
+        url('OgilvySerif-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Ogilvy Sans';
+    src: url('OgilvySans-RegularItalic.woff2') format('woff2'),
+        url('OgilvySans-RegularItalic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Ogilvy Serif';
+    src: url('OgilvySerif-Bold.woff2') format('woff2'),
+        url('OgilvySerif-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Ogilvy Sans';
+    src: url('OgilvySans-Light.woff2') format('woff2'),
+        url('OgilvySans-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Ogilvy Serif';
+    src: url('OgilvySerif-RegularItalic.woff2') format('woff2'),
+        url('OgilvySerif-RegularItalic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+

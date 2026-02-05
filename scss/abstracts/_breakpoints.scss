@@ -1,0 +1,18 @@
+$xs: 350px;
+$sm: 576px;
+$md: 768px;
+$lg: 991px;
+$xl: 1200px;
+$xxl: 1475px;
+$xxxl: 1925px;
+
+// breakpoints map
+$map: (
+  xs: $xs,
+  sm: $sm,
+  md: $md,
+  lg: $lg,
+  xl: $xl,
+  xxl: $xxl,
+  xxxl: $xxxl
+);
