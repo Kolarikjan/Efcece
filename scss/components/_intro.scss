@@ -16,6 +16,9 @@
             grid-template-columns: minmax(0, 1fr);
             gap: 4rem;
         }
+        @include max-media(md) {
+            gap: 2.5rem;
+        }
     }
 
     &-badge {

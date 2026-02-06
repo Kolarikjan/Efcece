@@ -6,7 +6,7 @@
 
 .banner {
     position: relative;
-    padding: 0 2.5rem;
+    padding: 0 2rem;
     height: 100%;
     @include max-media(lg) {
         padding: 0 1.25rem;
@@ -14,12 +14,9 @@
     &-logo {
         position: absolute;
         top: 0;
-        left: -5rem;
+        left: 0;
         z-index: 3;
         transform: translateY(-50%);
-        @include max-media(xxxl) {
-            left: 0;
-        }
         @include max-media(lg) {
             left: 2.5rem;
         }
@@ -61,7 +58,7 @@
         .owl-dots {
             position: absolute;
             bottom: 5rem;
-            right: 5rem;
+            right: 0;
             transform: translateY(50%);
             display: flex;
             gap: .875rem;
@@ -111,9 +108,12 @@
             height: 100%;
             img {
                 width: 100%;
-                height: calc(100dvh - 50px);
+                height: calc(100dvh - rem(82));
                 object-position: left;
                 object-fit: cover;
+                @include max-media(sm) {
+                    height: calc(100dvh - rem(60));
+                }
             }
         }
         .container {

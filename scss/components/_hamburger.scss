@@ -23,9 +23,9 @@
     transition: background-color 0.25s;
     }
     &:hover, &.active {
-        background-color: c.$white;
+        background-color: c.$purple-dark;
         .animated-icon span {
-            background-color: c.$black;
+            background-color: c.$white;
         }
     }
     .animated-icon {
@@ -46,7 +46,7 @@
             left: 0;
             transform: rotate(0deg);
             transition: .25s ease-in-out;
-            background: c.$white;
+            background: c.$purple-dark;
             &:nth-child(1) {
                 top: 8px;
             }

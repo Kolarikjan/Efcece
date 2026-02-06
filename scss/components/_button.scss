@@ -18,8 +18,11 @@
     padding: 1rem 2.75rem;
     cursor: pointer;
     position: relative;
-    overflow: hidden;
+    overflow: hidden; 
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+    transform: translateZ(0); 
     z-index: 1;
+    border: rem(1) solid transparent; 
     transition: color 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), border-color 0.4s ease;
     img, svg {
         flex-shrink: 0;
@@ -43,7 +46,7 @@
         transform-origin: right;
         transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
-
+    
     &:hover {
         &::before {
             transform: scaleX(1);
@@ -58,44 +61,59 @@
     &-white {
         color: c.$purple-dark;
         background-color: c.$white;
+        border-color: c.$white; 
         &::before {
             background-color: c.$purple-dark;
         }
         &:hover {
-            color: c.$purple-dark;
-            border-color: c.$black;
+            color: c.$white;
+            border-color: c.$white;
         }
         &.text-red {
             color: c.$red;
+            &::before {
+                background-color: c.$red; 
+            }
+            &:hover {
+                color: c.$white;
+            }
         }
-        &.text-putple {
+        &.text-purple {
             color: c.$purple;
+            &::before {
+                background-color: c.$purple;
+            }
+            &:hover {
+                color: c.$white;
+            }
         }
     }
     &-black {
         color: c.$white;
         background-color: c.$black;
+        border-color: c.$black;
         &::before {
             background-color: c.$white;
         }
         &:hover {
             color: c.$black;
-            border-color: c.$black;
+            border-color: c.$black; 
         }
     }
     &-purple {
         color: c.$white;
         background-color: c.$purple;
+        border-color: c.$purple;
         &::before {
             background-color: c.$white;
         }
         &:hover {
             color: c.$purple;
-            border-color: c.$white;
+            border-color: c.$purple; 
         }
     }
     &-grey {
-        border: rem(1) solid c.$gray-light;
+        border-color: c.$gray-light;
         color: c.$black;
         background-color: c.$gray-light;
         &::before {
@@ -103,7 +121,7 @@
         }
         &:hover {
             color: c.$white;
-            border-color: c.$black;
+            border-color: c.$gray-light;
         }
     }
     &-link {

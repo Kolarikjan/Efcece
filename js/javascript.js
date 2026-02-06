@@ -11,8 +11,57 @@ $(document).ready(function () {
         document.querySelector(".header-toggler").classList.toggle("active");
       });
     });
+  $(".faq-item-question").on("click", function () {
+    let item = $(this).closest(".faq-item");
+    let answer = item.find(".faq-item-answer");
 
-  $(".banner-owl").owlCarousel({
+    if (item.hasClass("active")) {
+      item.removeClass("active");
+      answer.css("height", 0);
+    } else {
+      $(".faq-item").removeClass("active");
+      $(".faq-item-answer").css("height", 0);
+
+      item.addClass("active");
+      let scrollHeight = answer.prop("scrollHeight");
+      answer.css("height", scrollHeight + "px");
+    }
+  });
+  const $bannerOwl = $(".banner-owl");
+
+  function alignDotsToContainer() {
+    let $dots = $bannerOwl.find(".owl-dots");
+    let $container = $bannerOwl.find(".owl-item.active .container");
+
+    if ($container.length === 0) {
+      $container = $bannerOwl.find(".banner-item .container").first();
+    }
+
+    if ($(window).width() > 993) {
+      if ($container.length > 0 && $dots.length > 0) {
+        let windowWidth = $(window).width();
+        let containerWidth = $container.outerWidth();
+        let containerOffsetLeft = $container.offset().left;
+
+        let rightPosition =
+          windowWidth - (containerOffsetLeft + containerWidth);
+
+        $dots.css({
+          left: "auto",
+          right: rightPosition + "px",
+          transform: "none",
+        });
+      }
+    } else {
+      $dots.css({
+        left: "",
+        right: "",
+        transform: "",
+      });
+    }
+  }
+
+  $bannerOwl.owlCarousel({
     items: 1,
     loop: false,
     rewind: true,
@@ -23,24 +72,11 @@ $(document).ready(function () {
     autoplayTimeout: 10000,
     autoplayHoverPause: false,
     mouseDrag: false,
-    singleItem: true,
-    animateIn: "fadeIn",
-    animateOut: "fadeOut",
+    onInitialized: alignDotsToContainer,
+    onResized: alignDotsToContainer,
+    onRefreshed: alignDotsToContainer,
   });
-  $(".faq-item-question").on("click", function () {
-    var item = $(this).closest(".faq-item");
-    var answer = item.find(".faq-item-answer");
-
-    if (item.hasClass("active")) {
-      item.removeClass("active");
-      answer.css("height", 0);
-    } else {
-      $(".faq-item").removeClass("active");
-      $(".faq-item-answer").css("height", 0);
-
-      item.addClass("active");
-      var scrollHeight = answer.prop("scrollHeight");
-      answer.css("height", scrollHeight + "px");
-    }
+  $(window).on("resize", function () {
+    alignDotsToContainer();
   });
 });

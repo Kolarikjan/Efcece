@@ -5,33 +5,24 @@
 @use "../abstracts/mixins" as *;
 
 .header {
-    z-index: 1;
     width: 100%;
     background-color: c.$white;
-    position: relative;
-    @include min-media(lg) {
-        &.fixed {
-            position: fixed;
-            top: 0;
-            left: 0;
-            transform: translateY(-100%);
+    @include min-media(xxxl) {
+        .container-fluid {    
+            max-width: calc(1200px + 15rem);
+            
         }
-        &.visible {
-            transform: translateY(0);
-        }
-    }
-    @include max-media(lg) {
-        position: fixed;
-        top: 0;
-        left: 0;
     }
     &-wrapper {
         position: relative;
-        padding: .75rem 0;
+        padding: 1.5rem 1.25rem;
         display: flex;
         align-items: center;
         justify-content: space-between;
         gap: 3rem;
+        @include max-media(lg) {
+            padding: .5rem .5rem;
+        }
     }
     &-logo-link, &-menu, &-toggler {
         position: relative;
@@ -61,14 +52,16 @@
         }
     }
     &-menu {
+        margin-left: auto;
         ul {
             display: flex;
             align-items: center;
             gap: 2rem;
             a {
+                font-family: f.$oglivy;
                 text-decoration: none;
                 display: block;
-                color: rgba(c.$white, .25);
+                color: c.$black;
                 position: relative;
                 &::after {
                     content: "";
@@ -77,13 +70,19 @@
                     left: 0;
                     width: 0;
                     height: rem(1);
-                    background: c.$white;
+                    background: c.$purple-dark;
                     transition-duration: .25s;
                 }
                 &:hover, &.active {
-                    color: c.$white;
+                    color: c.$purple-dark;
                     &::after {
                         width: 100%;
+                    }
+                    @include max-media(lg) {
+                        color: c.$white;
+                        &::after {
+                        background: c.$white;
+                        }
                     }
                 }
             }
@@ -91,10 +90,44 @@
         &-close {
             display: none;
         }
+        ul &-lang {
+            margin-left: 2rem;
+            background-color: c.$purple;
+            border-radius: r.$medium;
+            display: flex;
+            padding: .5rem .875rem;
+            gap: 1rem;
+            @include max-media(lg) {
+                margin-left: 0;
+            }
+            a {
+                line-height: 1;
+                &::after {
+                    content: none;
+                }
+                &:not(:first-child) {
+                    &::before {
+                        content: "";
+                        width: rem(2);
+                        height: 100%;
+                        position: absolute;
+                        left: -.5rem;
+                        top: 0;
+                        background-color: c.$white;
+                    }
+                }
+                &:not(.current) {
+                    color: rgba(c.$white, .5);
+                }
+                &, &:hover {
+                    color: c.$white;
+                }
+            }
+        }
         @include max-media(lg) {
             transition: all 0.375s;
             position: fixed;
-            background: c.$gray;
+            background: c.$purple-dark;
             top: 0;
             bottom: 0;
             right: 0;
@@ -114,7 +147,7 @@
             }
             &.active {    
                 transform: translateX(0);
-                box-shadow: 0 0 50rem 50rem rgba(c.$black, .3);
+                box-shadow: 0 0 50rem 50rem rgba(c.$purple, .35);
             }    
             ul {
                 flex-direction: column;

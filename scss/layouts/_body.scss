@@ -3,12 +3,6 @@
 @use "../abstracts/functions" as *;
 @use "../abstracts/mixins" as *;
 
-.body {
-    @include max-media(lg) {
-        padding-top: rem(72);
-    }
-}
-
 .section {
     position: relative;
     padding: 10rem 0;
@@ -20,10 +14,13 @@
         margin-bottom: 7.5rem;
         position: relative;
         @include max-media(md) {
-            margin-bottom: 5rem;
+            margin-bottom: 3rem;
         }
         &-small {
             margin-bottom: 3.5rem;
+            @include max-media(md) {
+                margin-bottom: 2rem;
+            }
         }
         &.centered {
             text-align: center;
@@ -44,10 +41,13 @@
         margin-top: 7.5rem;
         position: relative;
         @include max-media(md) {
-            margin-top: 5rem;
+            margin-top: 3rem;
         }
         &-small {
             margin-top: 3.5rem;
+            @include max-media(md) {
+                margin-top: 2rem;
+            }
         }
         &.centered {
             text-align: center;
