@@ -133,7 +133,7 @@ h4, .as-h4 {
         margin-bottom: 1.5rem;
     }
 }
-h5, h6 {
+h5 , h6 {
     font-size: rem(30);
     margin-top: 3.5rem;
     margin-bottom: 1.75rem;
@@ -143,6 +143,14 @@ h5, h6 {
         line-height: 1.2;
         margin-top: 2.5rem;
         margin-bottom: 1.5rem;
+    }
+}
+@include min-media(lg) {
+    .as-lg-h5 {
+        font-size: rem(30);
+        margin-top: 3.5rem;
+        margin-bottom: 1.75rem;
+        letter-spacing: rem(-.75);
     }
 }
 p {

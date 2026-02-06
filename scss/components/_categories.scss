@@ -13,6 +13,21 @@
             gap: 1.25rem;
         }
     }
+    &-title {
+        &-white {
+            color: c.$white;
+            @include max-media("lg") {
+                color: c.$black;
+            }
+        }
+    }
+    &-pushed-top {
+        margin-top: -18.5rem;
+        z-index: 2;
+        @include max-media("lg") {
+            margin-top: 0;
+        }
+    }
     &-item {
         display: flex;
         justify-content: space-between;
@@ -24,11 +39,14 @@
         transition: all 0.25s ease-in-out;
         position: relative;
         gap: .5rem;
+        background-color: c.$white;
         @include max-media("lg") {
             flex-direction: column;
         }
         $theme-colors: (
             "purple": c.$purple,
+            "purple-darker": c.$purple-darker,
+            "purple-dark": c.$purple-dark,
             "red": c.$red,
             "green": c.$green,
             "blue": c.$blue,
@@ -66,11 +84,21 @@
             @include max-media("md") {
                 gap: .75rem;
             }
-            h3 {
-                margin: -1rem 0 0;
+            &-content {
+                margin-top: -1rem;
                 color: c.$white;
-                @include max-media("lg") {
+                h3 {
                     margin: 0;
+                    color: c.$white;
+                }
+                span {
+                    display: block;
+                }
+                @include max-media("lg") {
+                    margin-top: 0;
+                    span {
+                        padding-bottom: .25rem;
+                    }
                 }
             }
             @each $name, $color in $theme-colors {
@@ -93,9 +121,16 @@
             border-radius: r.$max;
             transition: all 0.25s ease-in-out;
             width: fit-content;
+            &.icon-only {
+                padding: .375rem;
+                margin: 0.125rem;
+            }
             @include max-media("lg") {
                 position: unset;
                 margin: 0 auto;
+                &.icon-only {
+                    display: none;
+                }
             }
             @include max-media("md") {
                 gap: .5rem;

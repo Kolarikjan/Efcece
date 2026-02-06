@@ -36,7 +36,10 @@
         padding: 4rem;
         @include max-media(lg) {
             margin: 0 auto;
-            max-width: 375px;
+            max-width: 350px;
+        }
+        @include max-media(lg) {
+            padding: 2.5rem;
         }
         &-text {
             font-size: rem(85);

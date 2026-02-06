@@ -1,0 +1,40 @@
+@use "../abstracts/colors" as c;
+@use "../abstracts/fonts" as f;
+@use "../abstracts/radiuses" as r;
+@use "../abstracts/functions" as *;
+@use "../abstracts/mixins" as *;
+
+.textbox {
+    &-wrapper {
+
+    }
+    &-item {
+        max-width: rem(700);
+        &:nth-child(odd) {
+            text-align: right;
+            margin-left: auto;
+        }
+        &:not(:first-child) {
+            margin-top: -7.5rem;
+        }
+        &-title {
+            margin-bottom: .75rem;
+        }
+        &-subtitle {
+            display: block;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        &-content {
+            margin-top: 2.5rem;
+            ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+        }
+        &-button {
+            margin-top: 3rem;
+        }
+    }
+}

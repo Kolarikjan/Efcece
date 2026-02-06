@@ -6,9 +6,19 @@
 .section {
     position: relative;
     padding: 10rem 0;
-    width: 100%;
     @include max-media(md) {
         padding: 4rem 0;
+    }
+    &-spacing-bottom {
+        margin-bottom: .5rem;
+    }
+    &-spacing-horizontal {
+        margin-left: 2rem;
+        margin-right: 2rem;
+        @include max-media(md) {
+            margin-left: 1.25rem;
+            margin-right: 1.25rem;
+        }
     }
     &-header {
         margin-bottom: 7.5rem;

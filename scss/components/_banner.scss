@@ -132,6 +132,11 @@
             right: 0;
             width: 100%;
             z-index: 3;
+            &-pushed-top {
+                bottom: 50%;
+                transform: translateY(50%);
+                margin-bottom: 5rem;
+            }
             @include max-media(lg) {
                 text-align: center;
                 margin-top: 0;
@@ -152,6 +157,9 @@
             &-title {
                 color: c.$white;
                 margin: 0 0 3.5rem;
+                &:last-child {
+                    margin-bottom: 0;
+                }
                 @include max-media(lg) {
                     margin: 0 0 2.5rem;
                 }
@@ -163,6 +171,9 @@
                 color: c.$white;
                 font-size: rem(28);
                 margin: -1rem 0 3.5rem;
+                &:last-child {
+                    margin-bottom: 0;
+                }
                 @include max-media(lg) {
                     margin: -1rem 0 2.5rem;
                     font-size: rem(24);
