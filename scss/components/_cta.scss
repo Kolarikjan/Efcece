@@ -11,6 +11,18 @@
         justify-content: center;
         flex-wrap: wrap;
         gap: 2.75rem;
+        &-sidebyside {
+            flex-wrap: nowrap;
+            justify-content: space-between;
+            .button {
+                flex-shrink: 0;
+            }
+            @include max-media(lg) {
+                justify-content: center;
+                flex-direction: column;
+                text-align: center;
+            }
+        }
         @include max-media(md) {
             flex-direction: column;
             text-align: center;

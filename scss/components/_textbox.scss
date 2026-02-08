@@ -9,12 +9,20 @@
         @include min-media(lg) {
             margin-bottom: 0;
         }
-    }
-    &-title-blue {
-        color: c.$purple-dark;
-        max-width: rem(500);
         @include max-media(lg) {
-            margin: 0 auto;
+            text-align: left;
+        }
+    }
+    &-title {
+        &-blue {
+            color: c.$purple-dark;
+            max-width: rem(500);
+            @include max-media(lg) {
+                margin: 0 auto;
+            }
+        }
+        &-width {
+            max-width: rem(800);
         }
     }
     &-wrapper {
@@ -27,15 +35,37 @@
             gap: 3rem;
         }
     }
+    &-image {
+        &-right img {
+            margin-left: auto;
+        }
+        &-spacing-large {
+            margin-bottom: 7.5rem;
+            @include max-media(md) {
+                margin-bottom: 3rem;
+            }
+        }
+        img {
+            aspect-ratio: 16/9;
+            object-fit: cover;
+            max-width: rem(650);
+            height: auto;
+            @include max-media(lg) {
+                max-width: 100%;
+            }
+        }
+    }
     &-item {
         max-width: rem(696);
-        &:nth-child(odd) {
-            @include min-media(lg) {
-                text-align: right;
-                margin-left: auto;
-                ul {
-                    li {
-                        margin-left: auto;
+        &-swapsides {
+            &:nth-child(odd) {
+                @include min-media(lg) {
+                    text-align: right;
+                    margin-left: auto;
+                    ul {
+                        li {
+                            margin-left: auto;
+                        }
                     }
                 }
             }
@@ -56,9 +86,11 @@
             font-weight: 600;
         }
         &-content {
-            margin-top: 2rem;
-            @include max-media(md) {
-                margin-top: 1.5rem;
+            &:not(:first-child) {
+                margin-top: 2rem;
+                @include max-media(md) {
+                    margin-top: 1.5rem;
+                }
             }
             ul {
                 list-style: none;
@@ -68,6 +100,9 @@
         }
         &-button {
             margin-top: 3rem;
+            &-small {
+                margin-top: 1.75rem;
+            }
             @include max-media(md) {
                 margin-top: 2rem;
             }

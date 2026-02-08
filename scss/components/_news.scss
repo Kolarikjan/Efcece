@@ -85,6 +85,8 @@
                 -webkit-box-orient: vertical;
                 margin: 0 0 1.75rem;
                 @include max-media(md) {
+                    font-size: rem(22);
+                    letter-spacing: rem(-.5);
                     margin: 0 0 1.25rem;
                 }
                 a {

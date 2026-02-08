@@ -7,7 +7,7 @@
     position: relative;
     padding: 10rem 0;
     @include max-media(md) {
-        padding: 4rem 0;
+        padding: 4.5rem 0;
     }
     &-spacing-bottom {
         margin-bottom: .5rem;
@@ -23,8 +23,11 @@
     &-header {
         margin-bottom: 7.5rem;
         position: relative;
+        @include max-media(lg) {
+            text-align: center;
+        }
         @include max-media(md) {
-            margin-bottom: 3rem;
+            margin-bottom: 2.75rem;
         }
         &-small {
             margin-bottom: 3.5rem;
@@ -51,7 +54,7 @@
         margin-top: 7.5rem;
         position: relative;
         @include max-media(md) {
-            margin-top: 3rem;
+            margin-top: 2.75rem;
         }
         &-small {
             margin-top: 3.5rem;

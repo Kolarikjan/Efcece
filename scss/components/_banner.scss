@@ -206,3 +206,8 @@
         }
     }
 }
+.subpage .banner-item-image img {
+    @include max-media(md) {
+        height: rem(500);
+    }
+} 

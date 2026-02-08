@@ -24,11 +24,13 @@
     z-index: 1;
     border: rem(1) solid transparent; 
     transition: color 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), border-color 0.4s ease;
+
     img, svg {
         flex-shrink: 0;
         transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         margin-left: rem(10);
     }
+
     @include max-media(md) {
         padding: .75rem 2rem;
         font-size: rem(18);
@@ -100,6 +102,18 @@
             border-color: c.$black; 
         }
     }
+    &-bordered-black {
+        color: c.$black;
+        background-color: transparent;
+        border-color: c.$black;
+        &::before {
+            background-color: c.$purple-dark;
+        }
+        &:hover {
+            color: c.$white;
+            border-color: c.$purple-dark;
+        }
+    }
     &-purple {
         color: c.$white;
         background-color: c.$purple;
@@ -124,6 +138,7 @@
             }
         }
     }
+
     &-grey {
         border-color: c.$gray-light;
         color: c.$black;
@@ -136,6 +151,7 @@
             border-color: c.$gray-light;
         }
     }
+
     &-link {
         padding: 0;
         background: none;
@@ -180,6 +196,20 @@
                 background-color: c.$purple-dark;
                 border-color: c.$purple-dark;
             }
+        }
+    }
+    &-simple {
+        font-size: rem(28);
+        font-weight: 600;  
+        text-underline-offset: rem(5);
+        text-decoration-thickness: rem(3);
+        @include max-media(md) {
+            font-size: rem(22);
+            text-underline-offset: rem(4);
+            text-decoration-thickness: rem(2);
+        }
+        &:hover {
+            color: c.$purple-dark;
         }
     }
 }

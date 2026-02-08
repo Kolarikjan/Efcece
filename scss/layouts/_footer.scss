@@ -11,6 +11,7 @@
     border-radius: 0 0 r.$medium r.$medium;
     @include max-media(lg) {    
         margin: 0 1.25rem 1.25rem;
+        text-align: center;
     }
     a {
         text-decoration: none;

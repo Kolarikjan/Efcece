@@ -76,7 +76,49 @@ $(document).ready(function () {
     onResized: alignDotsToContainer,
     onRefreshed: alignDotsToContainer,
   });
+
   $(window).on("resize", function () {
     alignDotsToContainer();
+  });
+
+  $(".productbox-option-input").on("click", function (e) {
+    let $parent = $(this).closest(".productbox-option");
+    $(".productbox-option").not($parent).removeClass("is-open");
+    $parent.toggleClass("is-open");
+  });
+
+  $(".productbox-option-dropdown-item").on("click", function (e) {
+    if ($(e.target).closest(".item-remove").length) return;
+
+    let $item = $(this);
+    let value = $item.data("value");
+    let $parent = $item.closest(".productbox-option");
+
+    $parent.find(".productbox-option-value").text(value);
+    $parent.addClass("is-filled");
+    $parent.removeClass("is-open");
+    $parent.find(".productbox-option-hidden-input").val(value);
+    $parent.find(".productbox-option-dropdown-item").removeClass("active");
+    $item.addClass("active");
+  });
+
+  $(".item-remove").on("click", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    let $item = $(this).closest(".productbox-option-dropdown-item");
+    let $parent = $item.closest(".productbox-option");
+
+    $parent.removeClass("is-filled");
+    $parent.find(".productbox-option-value").html("&ndash;");
+    $parent.find(".productbox-option-hidden-input").val("");
+    $item.removeClass("active");
+    $parent.removeClass("is-open");
+  });
+
+  $(document).on("click", function (e) {
+    if (!$(e.target).closest(".productbox-option").length) {
+      $(".productbox-option").removeClass("is-open");
+    }
   });
 });

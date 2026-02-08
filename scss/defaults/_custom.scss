@@ -10,10 +10,10 @@
 }
 * {
     box-sizing: border-box;
-    scroll-margin-top: 4rem;
+    /*scroll-margin-top: 4rem;
     @include max-media(md) {
         scroll-margin-top: 2.5rem;
-    }
+    }*/
 }
 img, picture, video, canvas, svg {
     display: block;
@@ -32,7 +32,6 @@ body {
     font-weight: 400;
     line-height: 1.6;
     @include max-media(lg) {
-        text-align: center;
         font-size: rem(16);
     }
 }
@@ -43,7 +42,7 @@ a {
     text-decoration: underline;
     text-underline-offset: rem(3);
     &:hover {
-        color: c.$gray;
+        color: c.$purple-dark;
     }
 }
 .no-scroll {
@@ -59,16 +58,19 @@ a {
     ul {
         li {
             width: fit-content;
-            display: flex;
-            gap: .5rem;
+            position: relative;
+            padding-left: 1rem;
             &::before {
                 content: "";
+                position: absolute;
                 display: block;
+                left: 0;
                 background-color: c.$black;
                 height: rem(1);
                 width: .5rem;
                 margin-top: .925rem;
                 flex-shrink: 0;
+                margin-right: .5rem;
             }
         }
     }
@@ -153,13 +155,20 @@ h5 , h6 {
     margin-bottom: 1.75rem;
     letter-spacing: rem(-.75);
     @include max-media(md) {
-        font-size: rem(20);
+        font-size: rem(22);
+        letter-spacing: rem(-.5);
         line-height: 1.2;
         margin-top: 2.5rem;
         margin-bottom: 1.5rem;
     }
 }
 @include min-media(lg) {
+    .as-lg-h4 {
+        font-size: rem(40);
+        margin-top: 3.5rem;
+        margin-bottom: 2.25rem;
+        letter-spacing: rem(-1);
+    }
     .as-lg-h5 {
         font-size: rem(30);
         margin-top: 3.5rem;

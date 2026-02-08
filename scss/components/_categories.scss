@@ -80,6 +80,7 @@
                 border-right: 0;
                 gap: 1rem;
                 padding: 2rem 1rem 1.5rem;
+                text-align: center;
             }
             @include max-media("md") {
                 gap: .75rem;
