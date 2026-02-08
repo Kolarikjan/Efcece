@@ -33,7 +33,7 @@ body {
     line-height: 1.6;
     @include max-media(lg) {
         text-align: center;
-        font-size: rem(17);
+        font-size: rem(16);
     }
 }
 a {
@@ -56,16 +56,30 @@ a {
     ol {
         list-style:decimal;
     }
+    ul {
+        li {
+            width: fit-content;
+            display: flex;
+            gap: .5rem;
+            &::before {
+                content: "";
+                display: block;
+                background-color: c.$black;
+                height: rem(1);
+                width: .5rem;
+                margin-top: .925rem;
+                flex-shrink: 0;
+            }
+        }
+    }
     ul, ol {
         margin-bottom: 2rem;
         padding-left: 1.25rem;
-        @include max-media(md) {
+        @include max-media(lg) {
             text-align: left;
         }
         li {
-            &::marker {
-                color: c.$black;
-            }
+            list-style: none;
         }
     }
 }
@@ -100,7 +114,7 @@ h2, .as-h2 {
         font-size: rem(70);
     }
     @include max-media(md) {
-        font-size: rem(42);
+        font-size: rem(34);
         line-height: 1.2;
         margin-top: 2.5rem;
         margin-bottom: 1.75rem;
@@ -115,7 +129,7 @@ h3, .as-h3 {
         font-size: rem(50);
     }
     @include max-media(md) {
-        font-size: rem(32);
+        font-size: rem(28);
         line-height: 1.2;
         margin-top: 2.5rem;
         margin-bottom: 1.5rem;
@@ -127,7 +141,7 @@ h4, .as-h4 {
     margin-bottom: 2.25rem;
     letter-spacing: rem(-1);
     @include max-media(md) {
-        font-size: rem(26);
+        font-size: rem(24);
         line-height: 1.2;
         margin-top: 2.5rem;
         margin-bottom: 1.5rem;

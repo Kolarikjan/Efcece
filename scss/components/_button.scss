@@ -111,6 +111,18 @@
             color: c.$purple;
             border-color: c.$purple; 
         }
+        &-darker {
+            background-color: c.$purple-darker;
+            &:hover {
+                color: c.$purple-darker;
+            }
+        }
+        &-dark {
+            background-color: c.$purple-dark;
+            &:hover {
+                color: c.$purple-dark;
+            }
+        }
     }
     &-grey {
         border-color: c.$gray-light;

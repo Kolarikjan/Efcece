@@ -398,7 +398,7 @@ body {
 @media only screen and (max-width: 991px) {
   body {
     text-align: center;
-    font-size: 1.0625rem;
+    font-size: 1rem;
   }
 }
 
@@ -423,17 +423,32 @@ a:hover {
 .body ol {
   list-style: decimal;
 }
+.body ul li {
+  width: -moz-fit-content;
+  width: fit-content;
+  display: flex;
+  gap: 0.5rem;
+}
+.body ul li::before {
+  content: "";
+  display: block;
+  background-color: #030609;
+  height: 0.0625rem;
+  width: 0.5rem;
+  margin-top: 0.925rem;
+  flex-shrink: 0;
+}
 .body ul, .body ol {
   margin-bottom: 2rem;
   padding-left: 1.25rem;
 }
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 991px) {
   .body ul, .body ol {
     text-align: left;
   }
 }
-.body ul li::marker, .body ol li::marker {
-  color: #030609;
+.body ul li, .body ol li {
+  list-style: none;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -479,7 +494,7 @@ h2, .as-h2 {
 }
 @media only screen and (max-width: 768px) {
   h2, .as-h2 {
-    font-size: 2.625rem;
+    font-size: 2.125rem;
     line-height: 1.2;
     margin-top: 2.5rem;
     margin-bottom: 1.75rem;
@@ -499,7 +514,7 @@ h3, .as-h3 {
 }
 @media only screen and (max-width: 768px) {
   h3, .as-h3 {
-    font-size: 2rem;
+    font-size: 1.75rem;
     line-height: 1.2;
     margin-top: 2.5rem;
     margin-bottom: 1.5rem;
@@ -514,7 +529,7 @@ h4, .as-h4 {
 }
 @media only screen and (max-width: 768px) {
   h4, .as-h4 {
-    font-size: 1.625rem;
+    font-size: 1.5rem;
     line-height: 1.2;
     margin-top: 2.5rem;
     margin-bottom: 1.5rem;
@@ -810,7 +825,7 @@ ul .header-menu-lang a, ul .header-menu-lang a:hover {
   margin-left: 2rem;
   margin-right: 2rem;
 }
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 991px) {
   .section-spacing-horizontal {
     margin-left: 1.25rem;
     margin-right: 1.25rem;
@@ -1427,6 +1442,18 @@ ul .header-menu-lang a, ul .header-menu-lang a:hover {
 .button-purple:hover {
   color: #7b76a2;
   border-color: #7b76a2;
+}
+.button-purple-darker {
+  background-color: #4d4683;
+}
+.button-purple-darker:hover {
+  color: #4d4683;
+}
+.button-purple-dark {
+  background-color: #3a3080;
+}
+.button-purple-dark:hover {
+  color: #3a3080;
 }
 .button-grey {
   border-color: #eaeaeb;
@@ -2350,18 +2377,57 @@ ul .header-menu-lang a, ul .header-menu-lang a:hover {
   background: linear-gradient(350deg, #3a3080 0%, rgba(58, 48, 128, 0.95) 15%, rgba(58, 48, 128, 0.75) 30%, rgba(58, 48, 128, 0) 100%);
 }
 
+@media only screen and (min-width: 991px) {
+  .textbox-header {
+    margin-bottom: 0;
+  }
+}
+.textbox-title-blue {
+  color: #3a3080;
+  max-width: 31.25rem;
+}
+@media only screen and (max-width: 991px) {
+  .textbox-title-blue {
+    margin: 0 auto;
+  }
+}
+.textbox-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+@media only screen and (max-width: 991px) {
+  .textbox-wrapper {
+    gap: 6rem;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .textbox-wrapper {
+    gap: 3rem;
+  }
+}
 .textbox-item {
-  max-width: 43.75rem;
+  max-width: 43.5rem;
 }
-.textbox-item:nth-child(odd) {
-  text-align: right;
-  margin-left: auto;
+@media only screen and (min-width: 991px) {
+  .textbox-item:nth-child(odd) {
+    text-align: right;
+    margin-left: auto;
+  }
+  .textbox-item:nth-child(odd) ul li {
+    margin-left: auto;
+  }
 }
-.textbox-item:not(:first-child) {
-  margin-top: -7.5rem;
+.textbox-item-stretched {
+  margin-top: -4.5rem;
+}
+@media only screen and (max-width: 991px) {
+  .textbox-item-stretched {
+    margin-top: 0;
+  }
 }
 .textbox-item-title {
   margin-bottom: 0.75rem;
+  margin-top: 0;
 }
 .textbox-item-subtitle {
   display: block;
@@ -2369,7 +2435,12 @@ ul .header-menu-lang a, ul .header-menu-lang a:hover {
   font-weight: 600;
 }
 .textbox-item-content {
-  margin-top: 2.5rem;
+  margin-top: 2rem;
+}
+@media only screen and (max-width: 768px) {
+  .textbox-item-content {
+    margin-top: 1.5rem;
+  }
 }
 .textbox-item-content ul {
   list-style: none;
@@ -2378,4 +2449,9 @@ ul .header-menu-lang a, ul .header-menu-lang a:hover {
 }
 .textbox-item-button {
   margin-top: 3rem;
+}
+@media only screen and (max-width: 768px) {
+  .textbox-item-button {
+    margin-top: 2rem;
+  }
 }/*# sourceMappingURL=main.css.map */

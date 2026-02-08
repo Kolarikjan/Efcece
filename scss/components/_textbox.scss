@@ -5,20 +5,50 @@
 @use "../abstracts/mixins" as *;
 
 .textbox {
+    &-header {
+        @include min-media(lg) {
+            margin-bottom: 0;
+        }
+    }
+    &-title-blue {
+        color: c.$purple-dark;
+        max-width: rem(500);
+        @include max-media(lg) {
+            margin: 0 auto;
+        }
+    }
     &-wrapper {
-
+        display: flex;
+        flex-direction: column;
+        @include max-media(lg) {
+            gap: 6rem;
+        }
+        @include max-media(md) {
+            gap: 3rem;
+        }
     }
     &-item {
-        max-width: rem(700);
+        max-width: rem(696);
         &:nth-child(odd) {
-            text-align: right;
-            margin-left: auto;
+            @include min-media(lg) {
+                text-align: right;
+                margin-left: auto;
+                ul {
+                    li {
+                        margin-left: auto;
+                    }
+                }
+            }
         }
-        &:not(:first-child) {
-            margin-top: -7.5rem;
+        &-stretched {
+            margin-top: -4.5rem;
+            @include max-media(lg) {
+                margin-top: 0;
+            }
         }
         &-title {
             margin-bottom: .75rem;
+            margin-top: 0;
         }
         &-subtitle {
             display: block;
@@ -26,7 +56,10 @@
             font-weight: 600;
         }
         &-content {
-            margin-top: 2.5rem;
+            margin-top: 2rem;
+            @include max-media(md) {
+                margin-top: 1.5rem;
+            }
             ul {
                 list-style: none;
                 padding: 0;
@@ -35,6 +68,9 @@
         }
         &-button {
             margin-top: 3rem;
+            @include max-media(md) {
+                margin-top: 2rem;
+            }
         }
     }
 }
