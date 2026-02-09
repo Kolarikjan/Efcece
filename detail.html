@@ -194,7 +194,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="productbox-option" id="option-back">
+                                    <div class="productbox-option type-back">
                                         <div class="productbox-option-label">Zadní strana</div>
                                         <input type="hidden" name="color" class="productbox-option-hidden-input" value="">
                                         <div class="productbox-option-input">
@@ -283,73 +283,116 @@
                                         <p>Bez nákladů na doručení</p>
                                     </div>
                                 </div>
-                                <div class="productbox-item-text-options">
+                               <div class="productbox-item-text-options">
                                     <div class="productbox-inputbox">
                                         <label for="amount02">Množství</label>
-                                        <input type="number" name="amount" id="amount02" value="1">
+                                        <div class="amount-buttons">
+                                            <button type="button" class="amount-buttons-minus">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15" /></svg>
+                                            </button>
+                                            <div class="amount-buttons-amount">
+                                                <input type="number" name="amount" id="amount02" class="amount-buttons-amount-input" value="1" min="1">
+                                            </div>
+                                            <button type="button" class="amount-buttons-plus">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" /></svg>
+                                            </button>
+                                        </div>
                                     </div>
-                                    <div class="productbox-option" id="option-color">
+                                    <div class="productbox-option-wrapper type-dropdown">
                                         <div class="productbox-option-label">Probarvení</div>
                                         <input type="hidden" name="color" class="productbox-option-hidden-input" value="">
-                                        <div class="productbox-option-input">
-                                            <span class="productbox-option-value">&ndash;</span>
-                                            <div class="productbox-option-action">
-                                                <span class="action-text">Vybrat</span>
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="icon-chevron"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg>
+
+                                        <div class="productbox-option-card">
+                                            <div class="productbox-option-header">
+                                                <span class="productbox-option-value">&ndash;</span>
+                                                
+                                                <div class="productbox-option-status">
+                                                    <span class="status-text">Vybrat</span>
+                                                    
+                                                    <div class="status-icon">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                                                        </svg>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="productbox-option-dropdown">
-                                            <div class="productbox-option-dropdown-item" data-value="Antracit">
-                                                <span class="item-text">Antracit</span>
-                                                <button class="item-remove" title="Zrušit výběr">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" /></svg>
-                                                </button>
-                                            </div>
-                                            <div class="productbox-option-dropdown-item" data-value="Šedá">
-                                                <span class="item-text">Šedá</span>
-                                                <button class="item-remove" title="Zrušit výběr">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" /></svg>
-                                                </button>
-                                            </div>
-                                            <div class="productbox-option-dropdown-item" data-value="Písková">
-                                                <span class="item-text">Písková</span>
-                                                <button class="item-remove" title="Zrušit výběr">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" /></svg>
-                                                </button>
+                                            
+                                            <div class="productbox-option-body">
+                                                <div class="productbox-option-swatches">
+                                                    <button type="button" class="productbox-option-swatch" data-value="color-1" data-title="Antracit" style="--swatch-color: #383838;" title="Antracit"></button>
+                                                    <button type="button" class="productbox-option-swatch" data-value="color-2" data-title="Šedá" style="--swatch-color: #A9A9A9;" title="Šedá"></button>
+                                                    <button type="button" class="productbox-option-swatch" data-value="color-3" data-title="Písková" style="--swatch-color: #E2C792;" title="Písková"></button>
+                                                    <button type="button" class="productbox-option-swatch" data-value="color-4" data-title="Hnědá" style="--swatch-color: #7B604F;" title="Hnědá"></button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="productbox-option" id="option-back">
+                                    <div class="productbox-option-wrapper type-modal">
                                         <div class="productbox-option-label">Zadní strana</div>
-                                        <input type="hidden" name="color" class="productbox-option-hidden-input" value="">
-                                        <div class="productbox-option-input">
-                                            <span class="productbox-option-value">&ndash;</span>
-                                            <div class="productbox-option-action">
-                                                <span class="action-text">Vybrat</span>
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="icon-chevron"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg>
+                                        <input type="hidden" name="backside" class="productbox-option-hidden-input" value="">
+
+                                        <div class="productbox-option-card">
+                                            <div class="productbox-option-header modal-trigger">
+                                                <span class="productbox-option-value">&ndash;</span>
+                                                
+                                                <div class="productbox-option-status">
+                                                    <span class="status-text">Vybrat</span>
+                                                    
+                                                    <div class="status-icon">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="productbox-option-dropdown">
-                                            <div class="productbox-option-dropdown-item" data-value="Antracit">
-                                                <span class="item-text">Antracit</span>
-                                                <button class="item-remove" title="Zrušit výběr">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" /></svg>
-                                                </button>
-                                            </div>
-                                            <div class="productbox-option-dropdown-item" data-value="Šedá">
-                                                <span class="item-text">Šedá</span>
-                                                <button class="item-remove" title="Zrušit výběr">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" /></svg>
-                                                </button>
-                                            </div>
-                                            <div class="productbox-option-dropdown-item" data-value="Písková">
-                                                <span class="item-text">Písková</span>
-                                                <button class="item-remove" title="Zrušit výběr">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" /></svg>
-                                                </button>
+
+                                        <div class="modal">
+                                            <div class="modal-overlay modal-close"></div>
+                                            <div class="modal-container">
+                                                <div class="modal-header">
+                                                    <h3 class="modal-title">Vyberte zadní stranu</h3>
+                                                    <button type="button" class="modal-close-btn modal-close">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" /></svg>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="modal-grid">
+                                                        
+                                                        <div class="modal-item" data-value="back-1" data-title="Hladká">
+                                                            <div class="modal-item-image">
+                                                                <img src="img/theme/detail/detail-type2.jpg" alt="Hladká">
+                                                            </div>
+                                                            <div class="modal-item-content">
+                                                                <span class="modal-item-title">Hladká</span>
+                                                                <span class="modal-item-desc">Základní hladký povrch</span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="modal-item" data-value="back-2" data-title="Vzorovaná">
+                                                            <div class="modal-item-image">
+                                                                <img src="img/theme/detail/detail-type3.jpg" alt="Vzorovaná">
+                                                            </div>
+                                                            <div class="modal-item-content">
+                                                                <span class="modal-item-title">Vzorovaná</span>
+                                                                <span class="modal-item-desc">Imitace kamene</span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="modal-item" data-value="back-3" data-title="Oboustranná">
+                                                            <div class="modal-item-image">
+                                                                <img src="img/theme/detail/detail-type2.jpg" alt="Oboustranná">
+                                                            </div>
+                                                            <div class="modal-item-content">
+                                                                <span class="modal-item-title">Oboustranná</span>
+                                                                <span class="modal-item-desc">Dekor z obou stran</span>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
+
                                 </div>
                                 <div class="productbox-item-text-guarantee">
                                     <p>* <a href="#" class="guarantee-button">Garance nejlepší ceny</a></p>

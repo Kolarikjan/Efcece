@@ -13,60 +13,51 @@
             gap: 3.5rem;
         }
     }
+
     &-item {
         display: flex;
         align-items: center;
         flex-wrap: wrap;
         gap: 6rem;
-        @include max-media(xl) {
-            gap: 4rem;
-        }
+        
+        @include max-media(xl) { gap: 4rem; }
+        @include max-media(md) { gap: 2.5rem; }
+        @include max-media(lg) { text-align: center; }
+
         @include min-media(lg) {
-            &:nth-child(even) &-image {
-                order: 2;
-            }
-            &:nth-child(even) &-image-more {
-                margin-left: auto;
+            &:nth-child(even) {
+                .productbox-item-image { order: 2; }
+                .productbox-item-image-more { margin-left: auto; }
             }
         }
-        @include max-media(lg) {
-            text-align: center;
-        }
-        @include max-media(md) {
-            gap: 2.5rem;
-        }
+
         &-image {
             width: calc(62.5% - 3rem);
-            @include max-media(xxl) {
-                width: calc(57.5% - 3rem);
-            }
-            @include max-media(xl) {
-                width: calc(50% - 2rem);
-            }
-            @include max-media(lg) {
-                width: 100%;
-            }
+            @include max-media(xxl) { width: calc(57.5% - 3rem); }
+            @include max-media(xl) { width: calc(50% - 2rem); }
+            @include max-media(lg) { width: 100%; }
+
             &-main {
                 position: relative;
                 display: block;
                 border-radius: r.$medium;
                 aspect-ratio: 15/10;
                 overflow: hidden;
+
                 &-img {
                     width: 100%;
                     height: 100%;
                     object-fit: cover;
-                    transition: all .25s ease-in-out;
+                    transition: transform .25s ease-in-out;
                 }
+
                 &-resize {
                     position: absolute;
                     top: 1.5rem;
                     left: 1.5rem;
-                    img {
-                        width: 2rem;
-                        height: 2rem;
-                    }
+                    img { width: 2rem; height: 2rem; }
                 }
+
                 &-sale {
                     background-color: c.$red-dark;
                     color: c.$white;
@@ -79,46 +70,39 @@
                     line-height: 1.25;
                     font-weight: 600;
                 }
-                &:hover &-img {  
+
+                &:hover .productbox-item-image-main-img {
                     transform: scale(1.08);
                 }
             }
+
             &-more {
                 display: block;
                 width: fit-content;
                 margin-top: 1.25rem;
-                @include max-media(lg) {
-                    margin-left: auto;
-                    margin-right: auto;
-                }
+                @include max-media(lg) { margin-inline: auto; }
             }
         }
+
         &-text {
             width: calc(37.5% - 3rem);
-            @include max-media(xxl) {
-                width: calc(42.5% - 3rem);
-            }
-            @include max-media(xl) {
-                width: calc(50% - 2rem);
-            }
-            @include max-media(lg) {
-                width: 100%;
-            }
-            &-title {
-                margin-top: 0;
-            }
+            @include max-media(xxl) { width: calc(42.5% - 3rem); }
+            @include max-media(xl) { width: calc(50% - 2rem); }
+            @include max-media(lg) { width: 100%; }
+
+            &-title { margin-top: 0; }
             &-params {
                 margin-bottom: 2rem;
-                p {
-                    margin-bottom: 0;
-                }
+                p { margin-bottom: 0; }
             }
+
             &-price {
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
                 gap: .75rem;
                 margin-bottom: 2.25rem;
+
                 &-main {
                     min-width: rem(250);
                     font-family: f.$oglivy;
@@ -126,189 +110,360 @@
                     letter-spacing: rem(-1.5);
                     line-height: 1;
                     font-weight: 600;
-                    text-align: left;
-                    @include max-media(lg) {
-                        font-size: rem(45);
-                        letter-spacing: rem(-0.5);
-                    }
-                    @include max-media(md) {
-                        font-size: rem(40);
-                        min-width: unset;
-                        flex-shrink: 0;
-                    }
+                    
+                    @include max-media(lg) { font-size: rem(45); letter-spacing: rem(-0.5); }
+                    @include max-media(md) { font-size: rem(40); min-width: unset; flex-shrink: 0; }
                 }
+
                 &-info {
                     color: c.$gray;
                     font-size: rem(11);
                     line-height: 1.25;
                     text-align: right;
-                    p {
-                        margin-bottom: 0;
-                    }
+                    p { margin-bottom: 0; }
                 }
             }
-            &-options {
-                margin-bottom: 2.25rem;
-            }
-            &-guarantee {
-                margin-bottom: 2.25rem;
-            }
+
+            &-options, &-guarantee { margin-bottom: 2.25rem; }
+
             &-buttons {
                 display: flex;
                 flex-direction: column;
                 gap: 1.5rem;
-                @include max-media(lg) {
-                    align-items: center;
-                }
-                @include max-media(md) {
-                    gap: .75rem;
-                }
+                @include max-media(lg) { align-items: center; }
+                @include max-media(md) { gap: .75rem; }
             }
         }
     }
-    &-option-input, &-inputbox input {
+
+    // --- INPUTBOX (Standardní input pro množství) ---
+    &-inputbox {
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: flex-end;
         width: 100%;
-        min-height: rem(60);
-        padding: .75rem 1.25rem;
+        height: rem(60);
         background-color: c.$white;
         border: rem(1) solid c.$gray;
         border-radius: r.$small;
-        transition: all 0.3s ease;
-        &:hover {
-            border-color: c.$black;
-        }
-    }
-    &-inputbox {
+        transition: border-color 0.3s ease;
+        overflow: hidden; 
         position: relative;
+        width: 100%;
+        margin-top: rem(8);
+        // padding-bottom není potřeba, výšku drží container tlačítek
+
+        // Label plave nad inputem vlevo
         label {
             position: absolute;
             top: 50%;
-            left: 1.25rem;
+            left: rem(20); // 1.25rem
             transform: translateY(-50%);
             font-size: rem(18);
             font-weight: 600;
             color: c.$black;
+            z-index: 2;
+            pointer-events: none; // Aby kliknutí prošlo na input
         }
-        input {
-            padding-left: 70%;
-            text-align: right;
-            font-size: rem(18);
-            font-weight: 600;
-            color: c.$black;
-        }
-    }
-    &-option {
-        display: flex;
-        flex-direction: column;
-        gap: .375rem;
-        position: relative;
-        width: 100%;
-        margin-top: .5rem;
-        &-label {
-            font-size: rem(14);
-            color: c.$gray;
-            margin-left: 1.25rem;
-            text-align: left;
-        }
-        &-input {
-            cursor: pointer;
-        }
-        &-value {
-            font-size: rem(18);
-            font-weight: 600;
-            color: c.$black;
-        }
-        &-action {
+
+        // Kontejner pro input a tlačítka (vytváří vzhled boxu)
+        .amount-buttons {// Aby tlačítka nepřetekla radius
             display: flex;
             align-items: center;
-            gap: rem(10);
-            .action-text {
-                font-size: rem(18);
-                font-weight: 600;
-                color: c.$black;
-                text-decoration: underline;
-                text-underline-offset: rem(4);
-                transition: color 0.3s ease;
-                white-space: nowrap;
+            height: rem(40);
+            border-radius: r.$small;
+            overflow: hidden;
+            transition: all 0.25s ease-in-out;
+            
+            &:hover, &:focus-within {
+                border-color: c.$black;
             }
-            .icon-chevron {
+
+            // Tlačítka +/-
+            &-minus, &-plus {
+                height: 100%;
+                width: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: none;
+                border: none;
+                cursor: pointer;
+                color: c.$white;
+                transition: all 0.25s ease-in-out;
+                padding: 0;
+                z-index: 5;
+
+                &:hover {
+                    background-color: c.$purple;
+                }
+
+                svg {
+                    transition: all 0.25s ease-in-out;
+                    width: 0;
+                    height: rem(16);
+                }
+            }
+
+            // Samotný input
+            &-amount {
+                &-input {
+                    flex-grow: 1; // Roztáhne se mezi tlačítky
+                    width: rem(60);
+                    padding: 0 .75rem;
+                    height: 100%;
+                    border: none;
+                    background: transparent;
+                    text-align: right; // Číslo napravo
+                    font-size: rem(18);
+                    font-weight: 600;
+                    color: c.$black;
+                    text-align: center;
+                    transition: all 0.25s ease-in-out;
+                    -moz-appearance: textfield;
+                    &::-webkit-outer-spin-button, 
+                    &::-webkit-inner-spin-button {
+                        -webkit-appearance: none;
+                        margin: 0;
+                    }
+                    
+                    &:focus { outline: none; }
+                }
+            }
+        }
+
+        // Při hoveru na celý box zobrazíme tlačítka
+        &:hover {
+            .amount-buttons {
+                background-color: c.$purple-dark;
+                color: c.$white;
+                margin-right: .5rem;
+                &-amount {
+                    &-input {
+                        width: rem(40);
+                        padding: 0;
+                        text-align: center;
+                        color: c.$white;
+                    }
+                }
+                &-minus,
+                &-plus {
+                    width: rem(40);
+                    svg {
+                        width: 1rem;
+                    }
+                }
+            }
+        }
+    }
+
+    // --- OPTION (DROPDOWN) - Overlay Method ---
+    
+    // 1. WRAPPER: Drží místo v layoutu (aby nic neskákalo)
+    // 1. WRAPPER
+    .productbox-option-wrapper {
+    position: relative; 
+    width: 100%;
+    margin-top: rem(8);
+    padding-bottom: rem(60); 
+
+    .productbox-option-label {
+        font-size: rem(14);
+        color: c.$gray;
+        margin-left: rem(12);
+        margin-bottom: rem(6);
+        display: block;
+    }
+
+    // OBECNÉ STAVY (Pro ostatní inputy, pokud budou)
+    &.is-open {
+        z-index: 100;
+        .productbox-option-card {
+            border-color: c.$black;
+            box-shadow: 0 rem(10) rem(30) rgba(c.$black, 0.15);
+        }
+        .status-icon svg { transform: rotate(180deg); }
+    }
+
+    &.is-filled {
+        .productbox-option-status {
+            .status-text { display: none; }
+            .status-icon { display: flex; }
+        }
+    }
+
+    // --- VÝJIMKA 1: ZADNÍ STRANA (Vždy text, nikdy ikona) ---
+    &.type-modal {
+        .productbox-option-status {
+            .status-icon { display: none !important; }
+            .status-text { display: block !important; }
+        }
+        &.is-filled .productbox-option-status .status-text {
+            color: c.$gray;
+        }
+    }
+
+    // --- VÝJIMKA 2: PROBARVENÍ (Vždy ikona, nikdy text) ---
+    &.type-dropdown {
+        z-index: 11;
+        .productbox-option-status {
+            .status-text { display: none !important; } // Skrýt text "Vybrat"
+            .status-icon { display: flex !important; } // Zobrazit ikonu vždy
+        }
+    }
+}
+
+    // 2. CARD
+    &-option-card {
+        position: absolute;
+        top: rem(28); 
+        left: 0;
+        width: 100%;
+        background-color: c.$white;
+        border: rem(1) solid c.$gray;
+        border-radius: r.$small;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        z-index: 10;
+        overflow: hidden;
+
+        &:hover { border-color: c.$black; }
+    }
+
+    // 3. HEADER
+    &-option-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: rem(60);
+        padding: 0 rem(20);
+        cursor: pointer;
+        background-color: c.$white;
+    }
+
+    // Levá strana (Hodnota nebo Pomlčka)
+    &-option-value {
+        font-size: rem(18);
+        font-weight: 600;
+        color: c.$black;
+    }
+
+    // Pravá strana (Kontejner pro Text / Ikonu)
+    &-option-status {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+
+        // A) Text "Vybrat" (Defaultně viditelný)
+        .status-text {
+            font-size: rem(18);
+            font-weight: 600;
+            color: c.$black;
+            text-decoration: underline;
+            text-underline-offset: rem(4);
+            white-space: nowrap;
+            transition: color 0.3s ease;
+            
+            &:hover { color: c.$purple-dark; }
+        }
+
+        // B) Ikona (Defaultně skrytá)
+        .status-icon {
+            display: none; // Defaultně skryto, ukáže se jen při .is-filled
+            align-items: center;
+            justify-content: center;
+            
+            svg {
                 width: rem(20);
                 height: rem(20);
                 color: c.$gray;
                 transition: transform 0.3s ease;
-                display: none;
-            }
-        }
-        &-dropdown {
-            position: absolute;
-            top: calc(100% + #{rem(8)});
-            left: 0;
-            width: 100%;
-            background-color: c.$white;
-            border: rem(1) solid c.$gray-light;
-            border-radius: r.$small;
-            box-shadow: 0 rem(10) rem(20) rgba(c.$black, 0.1);
-            z-index: 100;
-            overflow: hidden;
-            display: none;
-            &-item {
-                padding: rem(12) rem(20);
-                font-size: rem(16);
-                color: c.$black;
-                cursor: pointer;
-                transition: background-color 0.2s ease;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                &:hover {
-                    background-color: c.$gray-light;
-                }
-                .item-remove {
-                    display: none;
-                    width: rem(24);
-                    height: rem(24);
-                    align-items: center;
-                    justify-content: center;
-                    border-radius: r.$circle;
-                    color: c.$gray;
-                    transition: all 0.2s ease;
-                    svg {
-                        width: rem(16);
-                        height: rem(16);
-                    }
-                    &:hover {
-                        background-color: rgba(c.$red, 0.15);
-                        color: c.$red;
-                    }
-                }
-                &.active {
-                    font-weight: 600;
-                    background-color: rgba(c.$gray-light, 0.5);
-                    .item-remove {
-                        display: flex;
-                    }
-                }
-            }
-        }
-        &.is-open {
-            .productbox-option-dropdown { display: block; }
-            .icon-chevron { transform: rotate(180deg); }
-            .productbox-option-input { border-color: c.$black; }
-        }
-        &.is-filled {
-            .productbox-option-action {
-                .action-text {
-                    display: none;
-                }
-                .icon-chevron {
-                    display: block;
-                }
             }
         }
     }
+
+    // 4. BODY
+    &-option-body {
+        display: none; 
+        padding: 0 rem(20) rem(20) rem(20);
+        background-color: c.$white;
+        border-top: none; 
+    }
+
+    // --- OBSAH (Swatches + Items) ---
+    &-option-swatches {
+        display: inline-flex;
+        align-items: center;
+        gap: rem(12);
+        padding: rem(8) rem(12);
+        border: rem(1) solid c.$gray-light;
+        border-radius: rem(50);
+        background-color: c.$white;
+        margin-top: rem(10);
+    }
+
+    &-option-swatch {
+        appearance: none;
+        border: none;
+        width: rem(32);
+        height: rem(32);
+        border-radius: 50%;
+        background-color: var(--swatch-color, #ccc);
+        cursor: pointer;
+        transition: transform 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+        position: relative;
+        box-shadow: inset 0 0 0 1px rgba(0,0,0,0.1);
+        &::after {
+            content: url("../img/icon/icon-tick.svg");
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 1rem;
+            height: 1rem;
+            filter: brightness(0) invert(1);
+            opacity: 0;
+        }
+        &:hover { transform: scale(1.15); }
+        &.active {
+            transform: scale(1.15);
+            &::after {
+                opacity: 1;
+            }
+        }
+    }
+
+    &-option-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: rem(12) 0;
+        cursor: pointer;
+        font-size: rem(16);
+        color: c.$black;
+        border-bottom: 1px solid rgba(c.$gray, 0.1);
+        
+        &:last-child { border-bottom: none; }
+        &:hover { color: c.$purple-dark; }
+
+        .item-remove {
+            display: none;
+            background: none;
+            border: none;
+            color: c.$gray;
+            padding: rem(4);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.2s;
+            svg { width: rem(16); height: rem(16); }
+            &:hover { background: rgba(c.$red, 0.1); color: c.$red; }
+        }
+
+        &.active {
+            font-weight: 600;
+            .item-remove { display: flex; }
+        }
+    }
+
     &-footer {
         @include max-media(lg) {
             width: fit-content;
