@@ -2440,6 +2440,12 @@ ul .header-menu-lang a, ul .header-menu-lang a:hover {
   height: 100%;
   background: linear-gradient(350deg, #3a3080 0%, rgba(58, 48, 128, 0.95) 15%, rgba(58, 48, 128, 0.75) 30%, rgba(58, 48, 128, 0) 100%);
 }
+.banner-content-white .banner-item-image img {
+  height: 75dvh;
+}
+.banner-content-white .banner-item-image::before {
+  background: linear-gradient(357.5deg, #fefefe 2%, rgba(254, 254, 254, 0.95) 20%, rgba(254, 254, 254, 0.75) 35%, rgba(254, 254, 254, 0) 50%);
+}
 
 @media only screen and (max-width: 768px) {
   .subpage .banner-item-image img {
@@ -2468,6 +2474,21 @@ ul .header-menu-lang a, ul .header-menu-lang a:hover {
 }
 .textbox-title-width {
   max-width: 50rem;
+}
+.textbox-title-right {
+  text-align: right;
+  margin-left: auto;
+}
+@media only screen and (max-width: 991px) {
+  .textbox-title-right {
+    text-align: left;
+    margin-left: 0;
+  }
+}
+@media only screen and (max-width: 991px) {
+  .textbox-title {
+    text-align: left;
+  }
 }
 .textbox-wrapper {
   display: flex;
@@ -2504,6 +2525,19 @@ ul .header-menu-lang a, ul .header-menu-lang a:hover {
 @media only screen and (max-width: 991px) {
   .textbox-image img {
     max-width: 100%;
+  }
+}
+.textbox-image-pushed-top {
+  margin-top: -2.5rem;
+}
+@media only screen and (max-width: 991px) {
+  .textbox-image-pushed-top {
+    margin-top: 4.5rem;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .textbox-image-pushed-top {
+    margin-top: 3rem;
   }
 }
 .textbox-item {
@@ -2551,12 +2585,18 @@ ul .header-menu-lang a, ul .header-menu-lang a:hover {
 .textbox-item-button {
   margin-top: 3rem;
 }
+.textbox-item-button-large {
+  margin-top: 3.75rem;
+}
 .textbox-item-button-small {
   margin-top: 1.75rem;
 }
 @media only screen and (max-width: 768px) {
   .textbox-item-button {
     margin-top: 2rem;
+  }
+  .textbox-item-button-large {
+    margin-top: 2.5rem;
   }
 }
 

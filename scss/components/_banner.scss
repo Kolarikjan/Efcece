@@ -205,6 +205,14 @@
             background: linear-gradient(350deg,rgba(c.$purple-dark, 1) 0%, rgba(c.$purple-dark, .95) 15%, rgba(c.$purple-dark, .75) 30%, rgba(c.$purple-dark, 0) 100%);
         }
     }
+    &-content-white &-item-image img {
+        height: 75dvh;
+    }
+    &-content-white &-item-image {
+        &::before {
+            background: linear-gradient(357.5deg,rgba(c.$white, 1) 2%, rgba(c.$white, .95) 20%, rgba(c.$white, .75) 35%, rgba(c.$white, 0) 50%);
+        }
+    }
 }
 .subpage .banner-item-image img {
     @include max-media(md) {

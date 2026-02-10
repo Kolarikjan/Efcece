@@ -24,6 +24,17 @@
         &-width {
             max-width: rem(800);
         }
+        &-right {
+            text-align: right;
+            margin-left: auto;
+            @include max-media(lg) {
+                text-align: left;
+                margin-left: 0;
+            }
+        }
+        @include max-media(lg) {
+            text-align: left;
+        }
     }
     &-wrapper {
         display: flex;
@@ -52,6 +63,15 @@
             height: auto;
             @include max-media(lg) {
                 max-width: 100%;
+            }
+        }
+        &-pushed-top {
+            margin-top: -2.5rem;
+            @include max-media(lg) {
+                margin-top: 4.5rem;
+            }
+            @include max-media(md) {
+                margin-top: 3rem;
             }
         }
     }
@@ -100,11 +120,17 @@
         }
         &-button {
             margin-top: 3rem;
+            &-large {
+                margin-top: 3.75rem;
+            }
             &-small {
                 margin-top: 1.75rem;
             }
             @include max-media(md) {
                 margin-top: 2rem;
+                &-large {
+                    margin-top: 2.5rem;
+                }
             }
         }
     }
