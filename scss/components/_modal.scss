@@ -4,126 +4,613 @@
 @use "../abstracts/functions" as *;
 @use "../abstracts/mixins" as *;
 
-// ... Zbytek stylů (wrapper, card, header, swatches) je stejný jako v předchozím kroku ...
-
-// Pouze pro jistotu zopakuji MODAL styly, aby bylo jasné, že jsou potřeba
-.modal {
-    display: none; 
-    position: fixed; // Fixní vůči oknu prohlížeče
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 2000; // Musí být nejvýš
-    
-    &-overlay {
+body {
+    &::after {
+        content: "";
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(c.$black, 0.6);
-        backdrop-filter: blur(4px);
+        background-color: rgba(c.$black, .5);
+        z-index: 9998;
+        transition: all .25s ease-in-out;
+        opacity: 0;
+        visibility: hidden;
     }
-
-    &-container {
-        position: relative;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 90%;
-        max-width: rem(800);
-        max-height: 90vh;
-        background-color: c.$white;
-        border-radius: r.$medium;
-        box-shadow: 0 rem(20) rem(40) rgba(c.$black, 0.2);
-        display: flex;
-        flex-direction: column;
+    &.modal-open {
         overflow: hidden;
-    }
-
-    &-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: rem(20) rem(30);
-        border-bottom: rem(1) solid c.$gray-light;
-    }
-
-    &-title {
-        font-size: rem(24);
-        font-weight: 600;
-        margin: 0;
-    }
-
-    &-close-btn {
-        background: none;
-        border: none;
-        cursor: pointer;
-        padding: rem(5);
-        color: c.$black;
-        transition: color 0.3s ease;
-        svg { width: rem(24); height: rem(24); }
-        &:hover { color: c.$red; }
-    }
-
-    &-body {
-        padding: rem(30);
-        overflow-y: auto;
-    }
-
-    &-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(rem(220), 1fr));
-        gap: rem(20);
-    }
-
-    &-item {
-        border: rem(1) solid c.$gray-light;
-        border-radius: r.$small;
-        overflow: hidden;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        background-color: c.$white;
-        display: flex;
-        flex-direction: column;
-
-        &:hover {
-            border-color: c.$black;
-            transform: translateY(rem(-5));
-            box-shadow: 0 rem(10) rem(20) rgba(c.$black, 0.1);
+        &::after {
+            opacity: 1;
+            visibility: visible;
         }
-
-        &-image {
+    }
+}
+.modal {
+    display: none; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    z-index: 9999;
+    border: 0;
+    background-color: c.$white;
+    border-radius: r.$medium;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 95%;
+    max-width: rem(1600);
+    max-height: 90vh;
+    flex-direction: column;
+    overflow: visible;
+    @include max-media(lg) {
+        transform: translateY(-50%);
+        max-height: calc(100% - 1rem);
+        width: calc(100% - 1rem);
+        left: .5rem;
+    }
+    &-overflow {
+        height: 100%;
+        overflow: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+    .custom-scrollbar {
+        position: absolute;
+        top: 1.5rem;
+        bottom: 1.5rem;
+        right: .25rem;  
+        width: rem(3);   
+        z-index: 50; 
+        pointer-events: none;
+        transition: opacity 0.2s ease;
+        @include max-media(lg) {
+            display: none;
+        }
+        &-thumb {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            height: rem(150);
-            overflow: hidden;
-            background-color: c.$gray-light;
-            img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                transition: transform 0.3s ease;
-            }
+            background-color: rgba(c.$purple, .25);
+            border-radius: r.$max;
         }
-
-        &:hover &-image img { transform: scale(1.05); }
-
-        &-content { padding: rem(15); text-align: center; }
-
+    }
+    &-radius {
+        &-top {
+            border-radius: r.$medium r.$medium 0 0;
+        }
+        &-bottom {
+            border-radius: 0 0 r.$medium r.$medium;
+        }
+    }
+    &-content {
+        position: relative;
+    }
+    &-simple {
         &-title {
             display: block;
-            font-size: rem(18);
+            max-width: rem(540);
+            font-size: rem(55);
             font-weight: 600;
-            margin-bottom: rem(5);
-            color: c.$black;
+            line-height: 1.1;
+            margin: 0;
+            letter-spacing: rem(-1.25);
+            @include max-media(lg) {
+                max-width: 100%;
+            }
+            @include max-media(md) {
+                font-size: rem(34);
+            }
         }
-
-        &-desc {
-            display: block;
-            font-size: rem(14);
-            color: c.$gray;
-            line-height: 1.4;
+        &-close {
+            position: absolute; 
+            top: 2rem;
+            right: 2rem;
+            transition: all .25s ease-in-out;
+            color: c.$black;
+            padding: .5rem;
+            border-radius: r.$small;
+            z-index: 10;
+            &-light {
+                color: c.$purple;
+            }
+            @include max-media(lg) {
+                background-color: c.$purple;
+                color: c.$white;
+                top: -.425rem;
+                right: -.425rem;
+                padding: .425rem;
+            }
+            svg {
+                width: 2.5rem;
+                height: 2.5rem;
+                @include max-media(md) {
+                    width: 2rem;
+                    height: 2rem;
+                }
+            }
+            &:hover {
+                background-color: c.$purple-dark;
+                color: c.$white;
+            }
+        }
+        &-section {
+            padding: 6.25rem 0;
+            position: relative;
+            height: 100%; 
+            display: flex;
+            flex-direction: column;
+            @include max-media(md) {
+                padding: 3rem 0;
+            }
+            &-header {
+                padding-bottom: 5.5rem;
+                flex-shrink: 0;
+                @include max-media(md) {
+                    padding-bottom: 2rem;
+                }
+            }
+            &-body {
+                overflow-y: auto; 
+                flex-grow: 1;
+                &::-webkit-scrollbar {
+                    display: none;
+                }
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+            &-blue {
+                background: linear-gradient(350deg,rgba(c.$purple-dark, 1) 0%, rgba(c.$purple-darker, 1) 100%);
+                color: c.$white;
+            }
+        }
+        .selection {
+            overflow: hidden;
+            border-radius: r.$medium;
+            &-imageinspector {
+                display: none;
+                position: fixed; 
+                z-index: 100;
+                width: 100%;
+                height: 100%;
+                top: 0; 
+                left: 0;
+                .container {
+                    height: 100%;
+                    padding: 0;
+                }
+                &-inner {
+                    z-index: 10000;
+                    position: relative;
+                    top: 50%;
+                    transform: translateY(-50%); 
+                    height: auto;
+                    width: 100%; 
+                    border-radius: r.$medium;
+                }
+                img {
+                    border-radius: r.$medium;
+                    width: 100%;
+                    height: 100%;
+                }
+                &-close {
+                    position: absolute;
+                    top: 2rem;
+                    right: 2rem;
+                    transition: all .25s ease-in-out;
+                    color: c.$black;
+                    padding: .5rem;
+                    border-radius: r.$small;
+                    @include max-media(lg) {
+                        background-color: c.$purple;
+                        color: c.$white;
+                        top: -.425rem;
+                        right: -.425rem;
+                        padding: .425rem;
+                    }
+                    svg {
+                        width: 2.5rem;
+                        height: 2.5rem;
+                        @include max-media(md) {
+                            width: 2rem;
+                            height: 2rem;
+                        }
+                    }
+                    &:hover {
+                        background-color: c.$purple-dark;
+                        color: c.$white;
+                    }
+                }
+                &::after {
+                    content: "";
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-color: rgba(c.$black, .4);
+                    z-index: 9998;
+                    transition: all .25s ease-in-out;
+                    border-radius: r.$medium;
+                    @include max-media(lg) {
+                        height: 200dvh;
+                        left: -0.5rem;
+                        width: calc(100% + 1rem);
+                        transform: translateY(-40%);
+                        top: 0;
+                    }
+                }
+            }
+            &-wrapper {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 4.5rem 6.25rem;
+                @include max-media(xxl) {
+                    gap: 3rem 4rem;
+                }
+                @include max-media(xl) {
+                    grid-template-columns: minmax(0, 1fr);
+                }
+                @include max-media(md) {
+                    gap: 1.75rem;
+                }
+            }
+            &-item {
+                &-body {
+                    position: relative;
+                }
+                &-title {
+                    display: flex;
+                    align-items: center;
+                    width: fit-content;
+                    font-size: 1.5rem;
+                    font-weight: 500;
+                    margin-bottom: .75rem;
+                    transition: all .25s ease-in-out;
+                    @include max-media(lg) {
+                        margin-left: auto;
+                        margin-right: auto;
+                    }
+                }
+                &-image {
+                    position: relative;
+                    display: block;
+                    border-radius: r.$medium;
+                    aspect-ratio: 15/10;
+                    overflow: hidden;
+                    &-img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        transition: transform 0.25s ease-in-out;
+                    }
+                    &:hover .selection-item-image-img {
+                        transform: scale(1.08);
+                    }
+                    &-resize {
+                        position: absolute;
+                        top: 1.5rem;
+                        left: 1.5rem;
+                        img {
+                            width: 1.5rem;
+                            height: 1.5rem;
+                        }
+                    }
+                }
+                &-button {
+                    position: absolute;
+                    bottom: 2rem;
+                    right: 2rem;
+                    @include max-media(md) {
+                        bottom: 1.25rem;
+                        right: 1.25rem;
+                    }
+                }
+                .button-purple {
+                    opacity: 0;
+                    visibility: hidden;
+                }
+                &.active {
+                    .button-purple {
+                        opacity: 0;
+                        visibility: hidden;
+                    }
+                    .button-purple {
+                        opacity: 1;
+                        visibility: visible;
+                    }
+                }
+            }
+        }
+        .titlebox {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            align-items: center;
+            gap: 6.25rem;
+            @include max-media(xxl) {
+                grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+                gap: 5rem;
+            }
+            @include max-media(xl) {
+                grid-template-columns: minmax(0, 1fr);
+                gap: 1.5rem;
+            }
+            @include max-media(md) {
+                gap: .75rem;
+            }
+            &-title {
+                flex-shrink: 0;
+                max-width: 100%;
+            }
+            &-description {
+                font-size: 1rem;
+            }
+        }
+        .guarantee {
+            &-wrapper {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 6.25rem;
+                @include max-media(xxl) {
+                    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+                    gap: 5rem;
+                }
+                @include max-media(xl) {
+                    grid-template-columns: minmax(0, 1fr);
+                }
+                @include max-media(md) {
+                    gap: 2.25rem;
+                }
+            }
+            &-item {
+                &-image {
+                    border-radius: r.$medium;
+                    aspect-ratio: 15/10;
+                    overflow: hidden;
+                    max-width: 100%;
+                    width: 100%;
+                    height: auto;
+                    object-fit: cover;
+                    margin-bottom: 4rem;
+                    @include max-media(xl) {
+                        max-width: rem(700);
+                    }
+                    @include max-media(md) {
+                        margin-bottom: 2.5rem;
+                    }
+                }
+                &-about {
+                    display: flex;
+                    align-items: center;
+                    gap: 2.5rem;
+                    @include max-media(md) {
+                        flex-direction: column;
+                        justify-content: center;
+                        gap: 1.25rem;
+                    }
+                    &-text {
+                        span {
+                            display: block;
+                            line-height: 1.3;
+                        }
+                    }
+                    &-price {
+                        flex-shrink: 0;
+                    }
+                }
+                &-form {
+                    &-title {
+                        display: block;
+                        margin-top: 0;
+                        margin-bottom: 2.25rem;
+                        @include max-media(md) {
+                            margin-bottom: 1.25rem;
+                        }
+                    }
+                    &-inputbox {
+                        display: block;
+                        width: 100%;
+                        margin-top: .5rem;
+                        @include max-media(md) {
+                            margin-top: .75rem;
+                        }
+                        span {
+                            font-size: 0.875rem;
+                            color: c.$gray;
+                            margin-left: .75rem;
+                            margin-bottom: .375rem;
+                            display: block;
+                            @include max-media(md) {
+                                margin-left: 0;
+                            }
+                        }
+                        input {
+                            display: flex;
+                            align-items: center;
+                            width: 100%;
+                            height: 3.75rem;
+                            padding: 1rem 1.25rem;
+                            border: rem(1) solid c.$gray;
+                            border-radius: r.$small;
+                            font-size: 1.125rem;
+                            font-weight: 600;
+                            color: c.$black;
+                            &, &::placeholder {
+                                transition: all .25s ease-in-out;
+                            }
+                            &:hover, :focus {
+                                border-color: c.$black;
+                            }
+                            &:focus::placeholder {
+                                color: c.$gray;
+                            }
+                        }
+                    }
+                    &-button {
+                        margin-top: 3rem;
+                        @include max-media(md) {
+                            margin-top: 2rem;
+                        }
+                    }
+                }
+            }
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, .3fr);
+            overflow: hidden;
+            border-radius: r.$medium;
+            @include max-media(xl) {
+                grid-template-columns: 1fr;
+            }
+            &, &-sidebar {
+                @include min-media(xl) {
+                    height: rem(800);  
+                }
+            }
+            &-main {
+                display: grid;
+                grid-template-areas: "stack"; 
+                position: relative;
+                overflow: hidden;
+                &-item {
+                    grid-area: stack;
+                    width: 100%;
+                    height: auto;
+                    object-fit: cover;
+                    height: 100%;
+                    opacity: 0;
+                    transition: opacity 0.4s ease-in-out;
+                    z-index: 1;
+                    @include max-media(xl) {
+                        aspect-ratio: 15/10;
+                    }
+                    &.visible {
+                        opacity: 1;
+                        z-index: 2;
+                    }
+                }
+            }
+            &-sidebar {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                &-controls {
+                    position: absolute;
+                    bottom: 4.5rem;
+                    left: 0;
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    gap: .5rem;
+                    @include max-media(xl) {
+                        bottom: 2.25rem;
+                    }
+                    @include max-media(md) {
+                        bottom: 1.75rem;
+                    }
+                    button {  
+                        border-radius: r.$max;
+                        background-color: c.$black;
+                        color: c.$white;
+                        width: 3rem;
+                        height: 3rem;
+                        padding: 0.5rem;
+                        transition: all .25s ease-in-out;
+                        @include max-media(md) {
+                            width: 2.5rem;
+                            height: 2.5rem;
+                        }
+                        &:hover {
+                            background-color: c.$purple;
+                            color: c.$white;
+                        }
+                    }
+                }
+                &-content {
+                    padding: 7.5rem 3rem 10rem;
+                    height: 100%;
+                    @include max-media(xl) {
+                        padding: 3rem 3rem 7.25rem;
+                    }
+                    @include max-media(md) {
+                        padding: 1.75rem 1.75rem 6rem;
+                    }
+                    &-wrapper {
+                        display: grid;
+                        grid-template-columns: repeat(2, minmax(0, 1fr));
+                        gap: 1rem;
+                        max-height: 100%;
+                        overflow: auto;
+                        &::-webkit-scrollbar {
+                            display: none;
+                        }
+                        -ms-overflow-style: none;
+                        scrollbar-width: none;
+                        @include max-media(xl) {
+                            max-height: auto;
+                            display: flex;
+                            flex-wrap: wrap;
+                            justify-content: center;
+                        }
+                        @include max-media(md) {
+                            gap: .75rem;
+                        }
+                    }
+                    &-item {
+                        display: block;
+                        aspect-ratio: 15/10;
+                        overflow: hidden;
+                        position: relative;
+                        @include max-media(xl) {
+                            max-width: rem(100);
+                        }
+                        @include max-media(sm) {
+                            max-width: rem(85);
+                        }
+                        &::after {
+                            content: "";
+                            position: absolute;
+                            top: .5rem;
+                            left: .5rem;
+                            width: 1.5rem;
+                            height: 1.5rem;
+                            border-radius: r.$circle;
+                            background-color: c.$white;
+                            background-image: url("../img/icon/icon-tick.svg");
+                            background-repeat: no-repeat;
+                            background-size: 75%;
+                            background-position: center center;
+                            transition: transform 0.25s ease-in-out;
+                            opacity: 0;
+                            visibility: hidden;
+                            @include max-media(sm) {
+                                width: 1.15rem;
+                                height: 1.15rem;
+                            }
+                        }
+                        &.active::after {
+                            opacity: 1;
+                            visibility: visible;
+                        }
+                        img {  
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                            transition: transform 0.25s ease-in-out;
+                        }
+                        &:hover img {
+                            transform: scale(1.08);
+                        }
+                    }
+                }
+            }
         }
     }
 }

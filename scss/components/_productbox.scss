@@ -150,14 +150,14 @@
         overflow: hidden; 
         position: relative;
         width: 100%;
-        margin-top: rem(8);
+        margin-top: .5rem;
         // padding-bottom není potřeba, výšku drží container tlačítek
 
         // Label plave nad inputem vlevo
         label {
             position: absolute;
             top: 50%;
-            left: rem(20); // 1.25rem
+            left: 1.25rem; // 1.25rem
             transform: translateY(-50%);
             font-size: rem(18);
             font-weight: 600;
@@ -201,7 +201,7 @@
                 svg {
                     transition: all 0.25s ease-in-out;
                     width: 0;
-                    height: rem(16);
+                    height: 1rem;
                 }
             }
 
@@ -256,214 +256,208 @@
             }
         }
     }
-
-    // --- OPTION (DROPDOWN) - Overlay Method ---
-    
-    // 1. WRAPPER: Drží místo v layoutu (aby nic neskákalo)
-    // 1. WRAPPER
-    .productbox-option-wrapper {
-    position: relative; 
-    width: 100%;
-    margin-top: rem(8);
-    padding-bottom: rem(60); 
-
-    .productbox-option-label {
-        font-size: rem(14);
-        color: c.$gray;
-        margin-left: rem(12);
-        margin-bottom: rem(6);
-        display: block;
-    }
-
-    // OBECNÉ STAVY (Pro ostatní inputy, pokud budou)
-    &.is-open {
-        z-index: 100;
-        .productbox-option-card {
-            border-color: c.$black;
-            box-shadow: 0 rem(10) rem(30) rgba(c.$black, 0.15);
+    &-option {
+        &-wrapper {
+            position: relative; 
+            width: 100%;
+            margin-top: .5rem;
+            padding-bottom: rem(62); 
+            &.is-open {
+                z-index: 100;
+                .productbox-option-card {
+                    border-color: c.$black;
+                }
+                .status-icon svg { 
+                    transform: rotate(180deg); 
+                }
+            }
+            &.is-filled {
+                .productbox-option-status {
+                    .status-text { 
+                        display: none; 
+                    }
+                    .status-icon { 
+                        display: flex; 
+                    }
+                }
+            }
+            &.type-modal {
+                .productbox-option-status {
+                    .status-icon { 
+                        display: none !important; 
+                    }
+                    .status-text { 
+                        display: block !important; 
+                    }
+                }
+                &.is-filled .productbox-option-status .status-text {
+                    color: c.$gray;
+                }
+            }
+            &.type-dropdown {
+                z-index: 11;
+                .productbox-option-status {
+                    .status-text { 
+                        display: none !important; 
+                    }
+                    .status-icon { 
+                        display: flex !important; 
+                    }
+                }
+            }
         }
-        .status-icon svg { transform: rotate(180deg); }
-    }
-
-    &.is-filled {
-        .productbox-option-status {
-            .status-text { display: none; }
-            .status-icon { display: flex; }
-        }
-    }
-
-    // --- VÝJIMKA 1: ZADNÍ STRANA (Vždy text, nikdy ikona) ---
-    &.type-modal {
-        .productbox-option-status {
-            .status-icon { display: none !important; }
-            .status-text { display: block !important; }
-        }
-        &.is-filled .productbox-option-status .status-text {
+        &-label {
+            font-size: rem(14);
             color: c.$gray;
+            margin-left: .75rem;
+            margin-bottom: rem(6);
+            display: block;
         }
-    }
-
-    // --- VÝJIMKA 2: PROBARVENÍ (Vždy ikona, nikdy text) ---
-    &.type-dropdown {
-        z-index: 11;
-        .productbox-option-status {
-            .status-text { display: none !important; } // Skrýt text "Vybrat"
-            .status-icon { display: flex !important; } // Zobrazit ikonu vždy
+        &-card {
+            position: absolute;
+            top: rem(28); 
+            left: 0;
+            width: 100%;
+            background-color: c.$white;
+            border: rem(1) solid c.$gray;
+            border-radius: r.$small;
+            z-index: 10;
+            overflow: hidden;
+            transition: all .25s ease-in-out;
+            &:hover { 
+                border-color: c.$black; 
+            }
         }
-    }
-}
-
-    // 2. CARD
-    &-option-card {
-        position: absolute;
-        top: rem(28); 
-        left: 0;
-        width: 100%;
-        background-color: c.$white;
-        border: rem(1) solid c.$gray;
-        border-radius: r.$small;
-        transition: border-color 0.3s ease, box-shadow 0.3s ease;
-        z-index: 10;
-        overflow: hidden;
-
-        &:hover { border-color: c.$black; }
-    }
-
-    // 3. HEADER
-    &-option-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        height: rem(60);
-        padding: 0 rem(20);
-        cursor: pointer;
-        background-color: c.$white;
-    }
-
-    // Levá strana (Hodnota nebo Pomlčka)
-    &-option-value {
-        font-size: rem(18);
-        font-weight: 600;
-        color: c.$black;
-    }
-
-    // Pravá strana (Kontejner pro Text / Ikonu)
-    &-option-status {
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-
-        // A) Text "Vybrat" (Defaultně viditelný)
-        .status-text {
+        &-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: rem(60);
+            padding: 0 1.25rem;
+            cursor: pointer;
+            background-color: c.$white;
+        }
+        &-value {
             font-size: rem(18);
             font-weight: 600;
             color: c.$black;
-            text-decoration: underline;
-            text-underline-offset: rem(4);
-            white-space: nowrap;
-            transition: color 0.3s ease;
-            
-            &:hover { color: c.$purple-dark; }
         }
-
-        // B) Ikona (Defaultně skrytá)
-        .status-icon {
-            display: none; // Defaultně skryto, ukáže se jen při .is-filled
+        &-status {
+            display: flex;
             align-items: center;
-            justify-content: center;
-            
-            svg {
-                width: rem(20);
-                height: rem(20);
-                color: c.$gray;
-                transition: transform 0.3s ease;
+            justify-content: flex-end;
+            .status-text {
+                font-size: rem(18);
+                font-weight: 600;
+                color: c.$black;
+                text-decoration: underline;
+                text-underline-offset: .25rem;
+                white-space: nowrap;
+                transition: color 0.3s ease;
+                &:hover { 
+                    color: c.$purple-dark; 
+                }
+            }
+            .status-icon {
+                display: none;
+                align-items: center;
+                justify-content: center;
+                svg {
+                    width: 1.25rem;
+                    height: 1.25rem;
+                    color: c.$gray;
+                    transition: transform 0.3s ease;
+                }
             }
         }
-    }
-
-    // 4. BODY
-    &-option-body {
-        display: none; 
-        padding: 0 rem(20) rem(20) rem(20);
-        background-color: c.$white;
-        border-top: none; 
-    }
-
-    // --- OBSAH (Swatches + Items) ---
-    &-option-swatches {
-        display: inline-flex;
-        align-items: center;
-        gap: rem(12);
-        padding: rem(8) rem(12);
-        border: rem(1) solid c.$gray-light;
-        border-radius: rem(50);
-        background-color: c.$white;
-        margin-top: rem(10);
-    }
-
-    &-option-swatch {
-        appearance: none;
-        border: none;
-        width: rem(32);
-        height: rem(32);
-        border-radius: 50%;
-        background-color: var(--swatch-color, #ccc);
-        cursor: pointer;
-        transition: transform 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
-        position: relative;
-        box-shadow: inset 0 0 0 1px rgba(0,0,0,0.1);
-        &::after {
-            content: url("../img/icon/icon-tick.svg");
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 1rem;
-            height: 1rem;
-            filter: brightness(0) invert(1);
-            opacity: 0;
+        &-body {
+            display: none; 
+            padding: 0 1.25rem 1.25rem 1.25rem;
+            background-color: c.$white;
+            border-top: none; 
+            text-align: left;
         }
-        &:hover { transform: scale(1.15); }
-        &.active {
-            transform: scale(1.15);
-            &::after {
-                opacity: 1;
-            }
+        &-swatches {
+            display: inline-flex;
+            align-items: center;
+            gap: .75rem;
+            padding: .5rem .75rem;
+            border: rem(1) solid c.$gray-light;
+            border-radius: rem(50);
+            background-color: c.$white;
+            margin-top: rem(10);
         }
-    }
-
-    &-option-item {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: rem(12) 0;
-        cursor: pointer;
-        font-size: rem(16);
-        color: c.$black;
-        border-bottom: 1px solid rgba(c.$gray, 0.1);
-        
-        &:last-child { border-bottom: none; }
-        &:hover { color: c.$purple-dark; }
-
-        .item-remove {
-            display: none;
-            background: none;
+        &-swatch {
+            appearance: none;
             border: none;
-            color: c.$gray;
-            padding: rem(4);
+            width: 2rem;
+            height: 2rem;
             border-radius: 50%;
+            background-color: var(--swatch-color, #ccc);
             cursor: pointer;
-            transition: all 0.2s;
-            svg { width: rem(16); height: rem(16); }
-            &:hover { background: rgba(c.$red, 0.1); color: c.$red; }
+            transition: transform 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            box-shadow: inset 0 0 0 1px rgba(0,0,0,0.1);
+            &::after {
+                content: url("../img/icon/icon-tick.svg");
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 1rem;
+                height: 1rem;
+                filter: brightness(0) invert(1);
+                opacity: 0;
+            }
+            &:hover { 
+                transform: scale(1.15); 
+            }
+            &.active {
+                transform: scale(1.15);
+                &::after {
+                    opacity: 1;
+                }
+            }
         }
-
-        &.active {
-            font-weight: 600;
-            .item-remove { display: flex; }
+        &-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: .75rem 0;
+            cursor: pointer;
+            font-size: 1rem;
+            color: c.$black;
+            border-bottom: 1px solid rgba(c.$gray, 0.1);
+            &:last-child { 
+                border-bottom: none; 
+            }
+            &:hover { 
+                color: c.$purple-dark; 
+            }
+            .item-remove {
+                display: none;
+                background: none;
+                border: none;
+                color: c.$gray;
+                padding: .25rem;
+                border-radius: 50%;
+                cursor: pointer;
+                transition: all 0.2s;
+                svg { 
+                    width: 1rem; height: 1rem; 
+                }
+                &:hover { 
+                    background: rgba(c.$red, 0.1); color: c.$red; 
+                }
+            }
+            &.active {
+                font-weight: 600;
+                .item-remove { 
+                    display: flex; 
+                }
+            }
         }
     }
-
     &-footer {
         @include max-media(lg) {
             width: fit-content;

@@ -23,7 +23,7 @@
     transform: translateZ(0); 
     z-index: 1;
     border: rem(1) solid transparent; 
-    transition: color 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), border-color 0.4s ease;
+    transition: color 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), all 0.4s ease;
 
     img, svg {
         flex-shrink: 0;
@@ -149,6 +149,18 @@
         &:hover {
             color: c.$white;
             border-color: c.$gray-light;
+        }
+    }
+
+    &-noborder {
+        border: 0 !important;
+    }
+
+    &-small {
+        padding: .625rem 2rem;
+        font-size: rem(24);
+        @include max-media(md) {
+            font-size: rem(20);
         }
     }
 
