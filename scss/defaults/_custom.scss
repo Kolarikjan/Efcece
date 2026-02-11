@@ -47,10 +47,11 @@ a {
 }
 .body {
     ul {
-        list-style:disc;
+        list-style: none;
     }
     ol {
         list-style:decimal;
+        padding-left: 1.25rem;
     }
     ul {
         li {
@@ -73,12 +74,8 @@ a {
     }
     ul, ol {
         margin-bottom: 2rem;
-        padding-left: 1.25rem;
         @include max-media(lg) {
             text-align: left;
-        }
-        li {
-            list-style: none;
         }
     }
 }

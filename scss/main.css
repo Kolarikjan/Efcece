@@ -412,10 +412,11 @@ a:hover {
 }
 
 .body ul {
-  list-style: disc;
+  list-style: none;
 }
 .body ol {
   list-style: decimal;
+  padding-left: 1.25rem;
 }
 .body ul li {
   width: -moz-fit-content;
@@ -437,15 +438,11 @@ a:hover {
 }
 .body ul, .body ol {
   margin-bottom: 2rem;
-  padding-left: 1.25rem;
 }
 @media only screen and (max-width: 991px) {
   .body ul, .body ol {
     text-align: left;
   }
-}
-.body ul li, .body ol li {
-  list-style: none;
 }
 
 h1, h2, h3, h4, h5, h6, .as-h1, .as-h2, .as-h3, .as-h4, .as-h5 {
