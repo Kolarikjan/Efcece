@@ -9,8 +9,10 @@ $(document).ready(function () {
         e.stopPropagation();
         document.querySelector(".header-menu").classList.toggle("active");
         document.querySelector(".header-toggler").classList.toggle("active");
+        document.querySelector("body").classList.toggle("modal-open");
       });
     });
+
   $(".faq-item-question").on("click", function () {
     let item = $(this).closest(".faq-item");
     let answer = item.find(".faq-item-answer");
@@ -27,6 +29,7 @@ $(document).ready(function () {
       answer.css("height", scrollHeight + "px");
     }
   });
+
   const $bannerOwl = $(".banner-owl");
 
   function alignDotsToContainer() {
@@ -81,14 +84,10 @@ $(document).ready(function () {
     alignDotsToContainer();
   });
 
-  // 1. Otevření/Zavření (Klik na header)
-  // --- A. Logika pro KLASICKÝ Dropdown (Overlay) ---
-  // Kliknutí na hlavičku, která NEMA třídu modal-trigger
   $(".productbox-option-header:not(.modal-trigger)").on("click", function (e) {
-    var $wrapper = $(this).closest(".productbox-option-wrapper");
-    var $body = $wrapper.find(".productbox-option-body");
+    let $wrapper = $(this).closest(".productbox-option-wrapper");
+    let $body = $wrapper.find(".productbox-option-body");
 
-    // Zavřít ostatní otevřené dropdowny
     $(".productbox-option-wrapper")
       .not($wrapper)
       .removeClass("is-open")
@@ -99,36 +98,29 @@ $(document).ready(function () {
     $body.slideToggle(200);
   });
 
-  // Výběr ve Swatches (kuličky)
   $(".productbox-option-swatch").on("click", function (e) {
     e.preventDefault();
-    var $item = $(this);
-    var title = $item.data("title");
-    var id = $item.data("value");
-    var $wrapper = $item.closest(".productbox-option-wrapper");
+    let $item = $(this);
+    let title = $item.data("title");
+    let id = $item.data("value");
+    let $wrapper = $item.closest(".productbox-option-wrapper");
 
-    // Update UI
     $wrapper.find(".productbox-option-value").text(title);
     $wrapper.addClass("is-filled");
     $wrapper.find(".productbox-option-hidden-input").val(id);
 
-    // Active class
     $wrapper.find(".active").removeClass("active");
     $item.addClass("active");
 
-    // Close
     $wrapper.removeClass("is-open");
     $wrapper.find(".productbox-option-body").slideUp(200);
   });
 
-  // --- B. Logika pro MODAL (Popup) ---
-
-  // Kliknutí na hlavičku s třídou .modal-trigger
   $(".modal-trigger").on("click", function (e) {
     e.preventDefault();
-    var $wrapper = $(this).closest(".modal-inside");
-    var $modal = $wrapper.find(".modal");
-    var $body = $("body"); // Najdi modal uvnitř tohoto wrapperu
+    let $wrapper = $(this).closest(".modal-inside");
+    let $modal = $wrapper.find(".modal");
+    let $body = $("body");
 
     if ($modal.length) {
       if ($wrapper.hasClass("productbox-option-wrapper")) {
@@ -138,63 +130,98 @@ $(document).ready(function () {
           .slideUp(200);
       }
 
-      // Otevřít modal
       $body.addClass("modal-open");
       $modal.fadeIn(300).css("display", "flex");
     }
   });
 
-  // Zavření modalu
   $(".modal-close").on("click", function (e) {
     e.preventDefault();
+    let $modal = $(this).closest(".modal");
+
     $("body").removeClass("modal-open");
-    $(this).closest(".modal").fadeOut(300);
+    $modal.fadeOut(300, function () {
+      $modal.find(".calculation2-order").addClass("active");
+      $modal.find(".calculation2-final").removeClass("active");
+
+      $modal.find(".js-same-address").prop("checked", true);
+      $modal.find(".calculation2-final-shipping-fields").hide();
+    });
   });
 
-  // Výběr položky v modalu
   $(".selection-item-button").on("click", function (e) {
     e.preventDefault();
-    var $item = $(this);
-    var title = $item.data("title");
-    var id = $item.data("value");
-    var $body = $("body");
+    let $item = $(this);
+    let title = $item.data("title");
+    let id = $item.data("value");
+    let $body = $("body");
 
-    // Najdeme wrapper (rodič modalu)
-    var $wrapper = $item.closest(".productbox-option-wrapper");
+    let $currentItem = $item.closest(".selection-item");
 
-    // Update UI na stránce
+    $item
+      .closest(".selection-wrapper")
+      .find(".selection-item")
+      .removeClass("active");
+
+    $currentItem.addClass("active");
+
+    let $wrapper = $item.closest(".productbox-option-wrapper");
+
     $wrapper.find(".productbox-option-value").text(title);
     $wrapper.addClass("is-filled");
     $wrapper.find(".productbox-option-hidden-input").val(id);
 
-    // Zavřít modal
     $body.removeClass("modal-open");
     $item.closest(".modal").fadeOut(300);
   });
 
-  // --- C. Společné (Kliknutí mimo) ---
   $(document).on("click", function (e) {
-    // Zavíráme jen dropdowny, modaly se řeší přes overlay
     if (!$(e.target).closest(".productbox-option-wrapper").length) {
       $(".productbox-option-wrapper")
         .removeClass("is-open")
         .find(".productbox-option-body")
         .slideUp(200);
     }
+
+    if ($(".header-menu").hasClass("active")) {
+      if (
+        !$(e.target).closest(".header-menu").length &&
+        !$(e.target).closest(".header-toggler").length
+      ) {
+        $(".header-menu").removeClass("active");
+        $(".header-toggler").removeClass("active");
+        $("body").removeClass("modal-open");
+      }
+    }
+
+    if ($("body").hasClass("modal-open") && $(".modal:visible").length) {
+      if (
+        !$(e.target).closest(".modal").length &&
+        !$(e.target).closest(".modal-trigger").length &&
+        !$(e.target).closest(".selection-item-image").length
+      ) {
+        $("body").removeClass("modal-open");
+
+        $(".modal:visible").fadeOut(300, function () {
+          $(this).find(".calculation2-order").addClass("active");
+          $(this).find(".calculation2-final").removeClass("active");
+          $(this).find(".js-same-address").prop("checked", true);
+          $(this).find(".calculation2-final-shipping-fields").hide();
+        });
+      }
+    }
   });
 
-  // --- OVLÁDÁNÍ MNOŽSTVÍ (+/-) ---
   $(".amount-buttons-minus, .amount-buttons-plus").on("click", function (e) {
     e.preventDefault();
 
-    var $btn = $(this);
-    // Najdeme input uvnitř stejného rodiče (.amount-buttons)
-    var $input = $btn
+    let $btn = $(this);
+    let $input = $btn
       .closest(".amount-buttons")
       .find("input.amount-buttons-amount-input");
 
-    var val = parseInt($input.val()) || 0;
-    var min = parseInt($input.attr("min")) || 1;
+    let val = parseInt($input.val()) || 0;
+    let min = parseInt($input.attr("min")) || 1;
 
     if ($btn.hasClass("amount-buttons-plus")) {
       $input.val(val + 1);
@@ -210,65 +237,24 @@ $(document).ready(function () {
   $(".selection-item-image").on("click", function (e) {
     e.preventDefault();
 
-    var $item = $(this).closest(".selection-item");
-    var imgSrc = $(this).find(".selection-item-image-img").attr("src");
-    var $modalBody = $(this).closest(".modal-simple-section-body");
-    var $inspector = $modalBody.find(".selection-imageinspector");
-    var $inspectorImg = $inspector.find("img");
+    let $item = $(this).closest(".selection-item");
+    let imgSrc = $(this).find(".selection-item-image-img").attr("src");
+    let $modalBody = $(this).closest(".modal-simple-section-body");
+    let $inspector = $modalBody.find(".selection-imageinspector");
+    let $inspectorImg = $inspector.find("img");
 
-    // 1. Nastavit obrázek
     $inspectorImg.attr("src", imgSrc);
-
-    // 2. Zobrazit inspektor
     $inspector.fadeIn(300);
-
     $inspector.data("origin-item", $item);
   });
 
-  // Zavření inspektoru
   $(".selection-imageinspector-close").on("click", function (e) {
     e.preventDefault();
 
-    var $inspector = $(this).closest(".selection-imageinspector");
-    // 1. Skrýt inspektor
+    let $inspector = $(this).closest(".selection-imageinspector");
     $inspector.fadeOut(300, function () {
-      // Callback po zmizení: Vyčistit src (volitelné)
       $(this).find("img").attr("src", "");
     });
-  });
-
-  $(".selection-item-button").on("click", function (e) {
-    e.preventDefault();
-    var $btn = $(this); // Tlačítko, na které se kliklo
-    var title = $btn.data("title");
-    var id = $btn.data("value");
-    var $body = $("body");
-
-    // --- LOGIKA PRO ACTIVE CLASS ---
-    // 1. Najdeme rodičovskou kartu (.selection-item)
-    var $currentItem = $btn.closest(".selection-item");
-
-    // 2. Najdeme kontejner a odebereme active všem ostatním položkám v něm
-    $btn
-      .closest(".selection-wrapper")
-      .find(".selection-item")
-      .removeClass("active");
-
-    // 3. Přidáme active aktuální položce
-    $currentItem.addClass("active");
-    // -------------------------------
-
-    // Najdeme wrapper (rodič modalu - input na stránce)
-    var $wrapper = $btn.closest(".productbox-option-wrapper");
-
-    // Update UI na stránce
-    $wrapper.find(".productbox-option-value").text(title);
-    $wrapper.addClass("is-filled");
-    $wrapper.find(".productbox-option-hidden-input").val(id);
-
-    // Zavřít modal
-    $body.removeClass("modal-open");
-    $btn.closest(".modal").fadeOut(300);
   });
 
   const gallery = document.querySelector(".gallery");
@@ -297,9 +283,8 @@ $(document).ready(function () {
     }
 
     function fadeTo(index) {
-      // Najdeme img uvnitř thumbnailu (odkazuje na něj 'this' nebo index)
       const sourceImg = thumbnails[index].querySelector("img");
-      const newSrc = sourceImg.src; // Nebo dataset, pokud používáš high-res
+      const newSrc = sourceImg.src;
       const newAlt = sourceImg.alt;
 
       if (showingA) {
@@ -328,7 +313,6 @@ $(document).ready(function () {
       fadeTo(currentIndex);
     }
 
-    // Click na náhledy
     thumbnails.forEach((thumb, index) => {
       thumb.addEventListener("click", (e) => {
         e.preventDefault();
@@ -339,7 +323,6 @@ $(document).ready(function () {
       });
     });
 
-    // Click na tlačítka (myší)
     if (nextBtn) {
       nextBtn.addEventListener("click", (e) => {
         e.preventDefault();
@@ -354,7 +337,6 @@ $(document).ready(function () {
       });
     }
 
-    // Klávesnice (Šipky)
     document.addEventListener("keydown", (e) => {
       if (e.key === "ArrowRight") {
         showNext();
@@ -366,57 +348,57 @@ $(document).ready(function () {
   }
 
   $(".modal-overflow").each(function () {
-    var $content = $(this);
-    var $parent = $content.parent(); // .modal-simple-section
+    let $content = $(this);
+    let $parent = $content.parent();
 
-    // 1. Vložíme HTML pro náš scrollbar do rodiče
-    var $scrollbar = $(
+    let $scrollbar = $(
       '<div class="custom-scrollbar"><div class="custom-scrollbar-thumb"></div></div>',
     );
     $parent.append($scrollbar);
 
-    var $thumb = $scrollbar.find(".custom-scrollbar-thumb");
+    let $thumb = $scrollbar.find(".custom-scrollbar-thumb");
 
-    // Funkce pro výpočet pozice a velikosti
     function updateScrollbar() {
-      var contentHeight = $content[0].scrollHeight;
-      var visibleHeight = $content[0].clientHeight;
-      var scrollTop = $content.scrollTop();
+      let contentHeight = $content[0].scrollHeight;
+      let visibleHeight = $content[0].clientHeight;
+      let scrollTop = $content.scrollTop();
 
-      // Pokud se obsah vejde, scrollbar skryjeme
       if (contentHeight <= visibleHeight) {
         $scrollbar.css("opacity", "0");
       } else {
         $scrollbar.css("opacity", "1");
       }
 
-      // Výpočet výšky jezdce (poměr viditelného ku celkovému)
-      var thumbHeightPercent = (visibleHeight / contentHeight) * 100;
-      // Omezíme, aby nebyl jezdec příliš malý (min 10%)
+      let thumbHeightPercent = (visibleHeight / contentHeight) * 100;
       if (thumbHeightPercent < 10) thumbHeightPercent = 10;
 
-      // Výpočet pozice shora (v procentech)
-      // Kolik % jsme odscrollovali z celkového neviditelného prostoru
-      var scrollPercent = scrollTop / (contentHeight - visibleHeight);
+      let scrollPercent = scrollTop / (contentHeight - visibleHeight);
+      let topPercent = scrollPercent * (100 - thumbHeightPercent);
 
-      // Přepočet na % v rámci dráhy scrollbaru (musíme odečíst výšku jezdce)
-      var topPercent = scrollPercent * (100 - thumbHeightPercent);
-
-      // Aplikace stylů
       $thumb.css({
         height: thumbHeightPercent + "%",
         top: topPercent + "%",
       });
     }
 
-    // Eventy: Při scrollu a při změně velikosti okna přepočítat
     $content.on("scroll", updateScrollbar);
     $(window).on("resize", updateScrollbar);
-
-    // Inicializace (pro případ, že je modal už otevřený nebo se otevře)
-    // Používáme MutationObserver nebo interval, pokud se obsah mění dynamicky,
-    // ale pro základ stačí zavolat při otevření modalu.
-    // Pro jistotu navážeme i na hover, aby se přepočítalo, kdyby se něco načetlo pozdě.
     $parent.on("mouseenter click", updateScrollbar);
+  });
+
+  $(".calculation2-order-continuetofinal").on("click", function (e) {
+    e.preventDefault();
+    $(".calculation2-order").removeClass("active");
+    $(".calculation2-final").addClass("active");
+    $(this).closest(".modal-overflow").animate({ scrollTop: 0 }, 300);
+  });
+
+  $(".js-same-address").on("change", function () {
+    let $shippingFields = $(".calculation2-final-shipping-fields");
+    if ($(this).is(":checked")) {
+      $shippingFields.slideUp(300);
+    } else {
+      $shippingFields.slideDown(300);
+    }
   });
 });

@@ -185,7 +185,7 @@
                                     <p>Množství na paletě <strong>20 ks</strong></p>
                                 </div>
                             </div>
-                            <form class="productbox-item-text-form">
+                            <div class="productbox-item-text-form">
                                 <div class="productbox-item-text-price">
                                     <span class="productbox-item-text-price-main">345,- Kč</span>
                                     <div class="productbox-item-text-price-info">
@@ -194,7 +194,7 @@
                                         <p>Bez nákladů na doručení</p>
                                     </div>
                                 </div>
-                                <div class="productbox-item-text-options">
+                                <form class="productbox-item-text-options">
                                     <div class="productbox-inputbox">
                                         <label for="amount01">Množství</label>
                                         <div class="amount-buttons">
@@ -339,7 +339,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </form>
                                 <div class="productbox-item-text-guarantee modal-inside">
                                     <p>* <a href="#" class="modal-trigger guarantee-button">Garance nejlepší ceny</a></p>
                                     <div class="modal modal-simple">
@@ -372,17 +372,17 @@
                                                                 </div>
                                                             </div>
                                                             <div class="guarantee-item">
-                                                                <form class="guarantee-item-form">
+                                                                <form class="guarantee-item-form form">
                                                                     <span class="as-h5 guarantee-item-form-title">Našli jste lepší cenu?</span>
-                                                                    <label class="guarantee-item-form-inputbox">
+                                                                    <label class="form-inputbox">
                                                                         <span>Kde jste našli lepší nabídku? Zadejte odkaz na zboží</span>
                                                                         <input type="text" placeholder="-">
                                                                     </label>
-                                                                    <label class="guarantee-item-form-inputbox">
+                                                                    <label class="form-inputbox">
                                                                         <span>Pokud jste dostali písemnou nabídku, nahrajte ji jako přílohu</span>
                                                                         <input type="file" placeholder="-">
                                                                     </label>
-                                                                    <label class="guarantee-item-form-inputbox">
+                                                                    <label class="form-inputbox">
                                                                         <span>Kam Vám můžeme zaslat nabídku?</span>
                                                                         <input type="email" placeholder="Zadejte e-mail">
                                                                     </label>
@@ -399,14 +399,366 @@
                                     </div>
                                 </div>
                                 <div class="productbox-item-text-buttons">
-                                    <a href="#" class="button button-black">
-                                        <span>Spočítat plot</span>
-                                    </a>
-                                    <a href="#" class="button button-bordered-black">
-                                        <span>Do košíku</span>
-                                    </a>
+                                    <div class="modal-inside">
+                                        <a href="#" class="modal-trigger button button-black">
+                                            <span>Spočítat plot</span>
+                                        </a>
+                                        <div class="modal modal-simple">
+                                            <button type="button" class="modal-simple-close modal-close">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" /></svg>
+                                            </button>
+                                            <div class="modal-overflow">
+                                                <div class="calculation1">
+                                                    <div class="container">
+                                                        <div class="modal-simple-section">
+                                                            <div class="modal-simple-section-header">
+                                                                <span class="modal-simple-title text-blue">Spočítejte si cenu vašeho nového plotu</span>
+                                                            </div>
+                                                            <div class="calculation1-buttons">
+                                                                <span class="calculation1-buttons-title">Máte vybranou řadu</span>
+                                                                <div class="calculation1-buttons-wrapper">
+                                                                    <button class="button button-bordered-purple active">
+                                                                        <span>Standard</span>
+                                                                    </button>
+                                                                    <button class="button button-bordered-purple">
+                                                                        <span>Premium</span>
+                                                                    </button>
+                                                                    <button class="button button-bordered-purple">
+                                                                        <span>Topline</span>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                            <form class="calculation1-form form">
+                                                                <div class="form-twocol">
+                                                                    <div>
+                                                                        <label class="form-inputbox">
+                                                                            <span>Doplňte délku plotu</span>
+                                                                            <div class="form-inputbox-number">
+                                                                                <input type="number" name="delka" placeholder="0 m">
+                                                                            </div>
+                                                                        </label>
+                                                                        <label class="form-inputbox">
+                                                                            <span>Doplňte výšku plotu</span>
+                                                                            <div class="form-inputbox-number">
+                                                                                <input type="number" name="vyska" placeholder="0 m">
+                                                                            </div>
+                                                                        </label>
+                                                                        <label class="form-inputbox">
+                                                                            <span>Probarvení</span>
+                                                                            <div class="form-inputbox-select">
+                                                                                <select name="podbarveni">
+                                                                                    <option selected hidden>Pískovec</option>
+                                                                                    <option value="0">Možnost 1</option>
+                                                                                    <option value="1">Možnost 2</option>
+                                                                                    <option value="2">Možnost 3</option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </label>
+                                                                        <label class="form-inputbox">
+                                                                            <span>Zvolte tvar plotu</span>
+                                                                            <div class="form-inputbox-select">
+                                                                                <select name="tvar">
+                                                                                    <option selected hidden>-</option>
+                                                                                    <option value="0">Možnost 1</option>
+                                                                                    <option value="1">Možnost 2</option>
+                                                                                    <option value="2">Možnost 3</option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </label>
+                                                                        <label class="form-inputbox">
+                                                                            <span>Chceto zboží dopravit?</span>
+                                                                            <div class="form-inputbox-select">
+                                                                                <select name="doprava">
+                                                                                    <option selected hidden>-</option>
+                                                                                    <option value="0">Možnost 1</option>
+                                                                                    <option value="1">Možnost 2</option>
+                                                                                    <option value="2">Možnost 3</option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </label>
+                                                                    </div>
+                                                                    <div>
+                                                                        <label class="form-inputbox">
+                                                                            <span>Dektor přední strany</span>
+                                                                            <div class="form-inputbox-select">
+                                                                                <select name="dekorP">
+                                                                                    <option selected hidden>Vlna 3D</option>
+                                                                                    <option value="0">Možnost 1</option>
+                                                                                    <option value="1">Možnost 2</option>
+                                                                                    <option value="2">Možnost 3</option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </label>
+                                                                        <label class="form-inputbox">
+                                                                            <span>Dekor zadní strany</span>
+                                                                            <div class="form-inputbox-select">
+                                                                                <select name="dekorZ">
+                                                                                    <option selected hidden>Bez dekoru</option>
+                                                                                    <option value="0">Možnost 1</option>
+                                                                                    <option value="1">Možnost 2</option>
+                                                                                    <option value="2">Možnost 3</option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </label>
+                                                                        <label class="form-inputbox">
+                                                                            <span>Vyberte si sloupky</span>
+                                                                            <div class="form-inputbox-select">
+                                                                                <select name="sloupky1">
+                                                                                    <option selected hidden>-</option>
+                                                                                    <option value="0">Možnost 1</option>
+                                                                                    <option value="1">Možnost 2</option>
+                                                                                    <option value="2">Možnost 3</option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </label>
+                                                                        <label class="form-inputbox">
+                                                                            <span>Zvolte si dekor sloupků</span>
+                                                                            <div class="form-inputbox-select">
+                                                                                <select name="sloupky2">
+                                                                                    <option selected hidden>-</option>
+                                                                                    <option value="0">Možnost 1</option>
+                                                                                    <option value="1">Možnost 2</option>
+                                                                                    <option value="2">Možnost 3</option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </label>
+                                                                        <label class="form-inputbox">
+                                                                            <span>Požadujete mnotáž?</span>
+                                                                            <div class="form-inputbox-select">
+                                                                                <select name="montaz">
+                                                                                    <option selected hidden>-</option>
+                                                                                    <option value="0">Možnost 1</option>
+                                                                                    <option value="1">Možnost 2</option>
+                                                                                    <option value="2">Možnost 3</option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="calculation1-form-footer">
+                                                                    <button type="submit" class="button button-purple button-purple-dark">
+                                                                        <span>Spočítat cenu</span>
+                                                                    </button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-inside">
+                                        <a href="#" class="modal-trigger button button-bordered-black">
+                                            <span>Do košíku</span>
+                                        </a>
+                                        <div class="modal modal-simple">
+                                            <button type="button" class="modal-simple-close modal-close">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" /></svg>
+                                            </button>
+                                            <div class="modal-overflow">
+                                                <div class="calculation2">
+                                                    <div class="modal-simple-section modal-simple-section-extended-top">
+                                                        <div class="container">
+                                                            <div class="modal-simple-section-header calculation2-header">
+                                                                <span class="modal-simple-title text-blue">Tady máte cenu vašeho nového plotu</span>
+                                                                <img src="img/theme/detail/detail-type2.jpg" alt="Valoun" class="calculation2-header-image">
+                                                            </div>
+                                                            <div class="modal-simple-section-body">
+                                                                <div class="calculation2-table">
+                                                                    <div class="calculation2-table-header">
+                                                                        <div class="calculation2-col-item">Položka</div>
+                                                                        <div class="calculation2-col-qty">Počet</div>
+                                                                        <div class="calculation2-col-price">Cena / ks</div>
+                                                                        <div class="calculation2-col-total">Cena celkem</div>
+                                                                    </div>
+                                                                    <div class="calculation2-table-body">
+                                                                        <div class="calculation2-table-row">
+                                                                            <div class="calculation2-col-item">Deska rovná – celá – Vlna 3D – zadní strana Bez dekoru ( 200 x 50 x 4–5 )</div>
+                                                                            <div class="calculation2-col-qty" data-label="Počet">80</div>
+                                                                            <div class="calculation2-col-price" data-label="Cena / ks">367,- Kč</div>
+                                                                            <div class="calculation2-col-total" data-label="Cena celkem">29 360,- Kč</div>
+                                                                        </div>
+                                                                        <div class="calculation2-table-row">
+                                                                            <div class="calculation2-col-item">Sloupek Hladký – průběžný ( 200 x 12 x 12 )</div>
+                                                                            <div class="calculation2-col-qty" data-label="Počet">17</div>
+                                                                            <div class="calculation2-col-price" data-label="Cena / ks">437,- Kč</div>
+                                                                            <div class="calculation2-col-total" data-label="Cena celkem">7 429,- Kč</div>
+                                                                        </div>
+                                                                        <div class="calculation2-table-row">
+                                                                            <div class="calculation2-col-item">Sloupek Hladký – rohový ( 200 x 12 x 12 )</div>
+                                                                            <div class="calculation2-col-qty" data-label="Počet">2</div>
+                                                                            <div class="calculation2-col-price" data-label="Cena / ks">555,- Kč</div>
+                                                                            <div class="calculation2-col-total" data-label="Cena celkem">1 110,- Kč</div>
+                                                                        </div>
+                                                                        <div class="calculation2-table-row">
+                                                                            <div class="calculation2-col-item">Sloupek Hladký – koncový ( 200 x 12 x 12 )</div>
+                                                                            <div class="calculation2-col-qty" data-label="Počet">2</div>
+                                                                            <div class="calculation2-col-price" data-label="Cena / ks">437,- Kč</div>
+                                                                            <div class="calculation2-col-total" data-label="Cena celkem">874,- Kč</div>
+                                                                        </div>
+                                                                        <div class="calculation2-table-row">
+                                                                            <div class="calculation2-col-item">Balné ( palety )</div>
+                                                                            <div class="calculation2-col-qty" data-label="Počet">3</div>
+                                                                            <div class="calculation2-col-price" data-label="Cena / ks">450,- Kč</div>
+                                                                            <div class="calculation2-col-total" data-label="Cena celkem">1 350,- Kč</div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="calculation2-table-footer">
+                                                                        <div class="calculation2-total-box">
+                                                                            <span class="total-label">Celkem s DPH ( 21 % )</span>
+                                                                            <span class="total-value">40 123,- Kč</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-simple-section modal-simple-section-blue modal-radius-bottom">
+                                                        <div class="container">
+                                                            <form class="calculation2-order active">
+                                                                <div class="calculation2-order-wrapper">
+                                                                    <div class="calculation2-order-content d-lg-none">
+                                                                        <h2 class="calculation2-order-title">Zboží nyní můžete rovnou&nbsp;objednat nebo&nbsp;poptat</h2>
+                                                                        <p class="calculation2-order-desc">Pro sjednání slevy, přesné ceny dopravy nebo montáže Vás bude kontaktovat naše zákaznická podpora</p>
+                                                                    </div>
+                                                                    <div class="calculation2-order-form">
+                                                                        <div class="calculation2-order-inputbox">
+                                                                            <input type="text" name="name" placeholder="Jméno a příjmení">
+                                                                        </div>
+                                                                        <div class="calculation2-order-inputbox">
+                                                                            <input type="tel" name="phone" placeholder="Telefon">
+                                                                        </div>
+                                                                        <div class="calculation2-order-inputbox">
+                                                                            <input type="email" name="email" placeholder="E-mail">
+                                                                        </div>
+                                                                        <div class="calculation2-order-inputbox">
+                                                                            <input type="text" name="address" placeholder="Adresa">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="calculation2-order-content">
+                                                                        <h2 class="calculation2-order-title d-none d-lg-block">Zboží nyní můžete rovnou&nbsp;objednat nebo&nbsp;poptat</h2>
+                                                                        <p class="calculation2-order-desc d-none d-lg-block">Pro sjednání slevy, přesné ceny dopravy nebo montáže Vás bude kontaktovat naše zákaznická podpora</p>
+                                                                        <div class="calculation2-order-buttons">
+                                                                            <button type="button" class="button button-white calculation2-order-continuetofinal">
+                                                                                <span>Objednat</span>
+                                                                            </button>
+                                                                            <button type="submit" class="button button-white">
+                                                                                <span>Nezávazně poptat</span>
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                            <form class="calculation2-final">
+                                                                <div class="calculation2-final-wrapper">
+                                                                    <div class="calculation2-final-section">
+                                                                        <h2 class="calculation2-final-title">Fakturační a dodací údaje</h2>
+                                                                        <div class="calculation2-final-grid">
+                                                                            <div class="calculation2-final-inputbox">
+                                                                                <input type="text" placeholder="Jméno a příjmení">
+                                                                            </div>
+                                                                            <div class="calculation2-final-inputbox">
+                                                                                <input type="text" placeholder="Ulice a číslo popisné">
+                                                                            </div>
+                                                                            <div class="calculation2-final-inputbox">
+                                                                                <input type="email" placeholder="E-mail">
+                                                                            </div>
+                                                                            <div class="calculation2-final-inputbox">
+                                                                                <input type="text" placeholder="Město">
+                                                                            </div>
+                                                                            <div class="calculation2-final-inputbox">
+                                                                                <input type="tel" placeholder="Telefon">
+                                                                            </div>
+                                                                            <div class="calculation2-final-inputbox">
+                                                                                <input type="text" placeholder="PSČ">
+                                                                            </div>
+                                                                        </div>
+                                                                        <label class="calculation2-final-checkbox">
+                                                                            <input type="checkbox" class="js-same-address" checked>
+                                                                            <span class="checkmark">
+                                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" /></svg>
+                                                                            </span>
+                                                                            <span class="text">Dodací adresa je stejná jako fakturační</span>
+                                                                        </label>
+                                                                        <div class="calculation2-final-shipping-fields" style="display: none;">
+                                                                            <h3 class="calculation2-final-subtitle">Dodací údaje</h3>
+                                                                            <div class="calculation2-final-grid">
+                                                                                <div class="calculation2-final-inputbox">
+                                                                                    <input type="text" placeholder="Jméno a příjmení">
+                                                                                </div>
+                                                                                <div class="calculation2-final-inputbox">
+                                                                                    <input type="text" placeholder="Ulice a číslo popisné">
+                                                                                </div>
+                                                                                <div class="calculation2-final-inputbox">
+                                                                                    <input type="text" placeholder="Město">
+                                                                                </div>
+                                                                                <div class="calculation2-final-inputbox">
+                                                                                    <input type="text" placeholder="PSČ">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="calculation2-final-columns">
+                                                                        <div class="calculation2-final-col">
+                                                                            <h3 class="calculation2-final-subtitle">Doprava</h3>
+                                                                            <label class="calculation2-final-radiobox">
+                                                                                <input type="radio" name="shipping" checked>
+                                                                                <span class="radio-mark">
+                                                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" /></svg>
+                                                                                </span>
+                                                                                <span class="radio-text">Osobní odběr na pobočce</span>
+                                                                                <span class="radio-price">zdarma</span>
+                                                                            </label>
+                                                                            <label class="calculation2-final-radiobox">
+                                                                                <input type="radio" name="shipping">
+                                                                                <span class="radio-mark">
+                                                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" /></svg>
+                                                                                </span>
+                                                                                <span class="radio-text">Až do domu</span>
+                                                                                <span class="radio-price">individuální kalkulace *</span>
+                                                                            </label>
+                                                                            <p class="calculation2-final-note">* Pro sjednání přesné ceny dopravy nebo montáže<br>Vás bude kontaktovat naše zákaznická podpora</p>
+                                                                        </div>
+                                                                        <div class="calculation2-final-col">
+                                                                            <h3 class="calculation2-final-subtitle">Platba</h3>
+                                                                            <label class="calculation2-final-radiobox">
+                                                                                <input type="radio" name="payment" checked>
+                                                                                <span class="radio-mark">
+                                                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" /></svg>
+                                                                                </span>
+                                                                                <span class="radio-text">Platební kartou na pobočce</span>
+                                                                            </label>
+                                                                            <label class="calculation2-final-radiobox">
+                                                                                <input type="radio" name="payment">
+                                                                                <span class="radio-mark">
+                                                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" /></svg>
+                                                                                </span>
+                                                                                <span class="radio-text">Převodem &ndash; zálohovou fakturou</span>
+                                                                            </label>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="calculation2-final-submit">
+                                                                        <label class="calculation2-final-checkbox">
+                                                                            <input type="checkbox">
+                                                                            <span class="checkmark">
+                                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" /></svg>
+                                                                            </span>
+                                                                            <span class="text">Souhlasím s <a href="#">obchodními podmínkami</a></span>
+                                                                        </label>
+                                                                        <button type="submit" class="button button-white">
+                                                                            <span>Objednat</span>
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                     <div class="productbox-item">
@@ -443,7 +795,7 @@
                                     <p>Množství na paletě <strong>20 ks</strong></p>
                                 </div>
                             </div>
-                            <form class="productbox-item-text-form">
+                            <div class="productbox-item-text-form">
                                 <div class="productbox-item-text-price">
                                     <span class="productbox-item-text-price-main">288,- Kč</span>
                                     <div class="productbox-item-text-price-info">
@@ -452,7 +804,7 @@
                                         <p>Bez nákladů na doručení</p>
                                     </div>
                                 </div>
-                               <div class="productbox-item-text-options">
+                               <form class="productbox-item-text-options">
                                     <div class="productbox-inputbox">
                                         <label for="amount02">Množství</label>
                                         <div class="amount-buttons">
@@ -499,7 +851,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </form>
                                 <div class="productbox-item-text-guarantee">
                                     <p>* <a href="#" class="guarantee-button">Garance nejlepší ceny</a></p>
                                 </div>
@@ -511,7 +863,7 @@
                                         <span>Do košíku</span>
                                     </a>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>

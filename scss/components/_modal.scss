@@ -44,7 +44,7 @@ body {
     max-width: rem(1600);
     max-height: 90vh;
     flex-direction: column;
-    overflow: visible;
+    overflow: hidden;
     @include max-media(lg) {
         transform: translateY(-50%);
         max-height: calc(100% - 1rem);
@@ -101,6 +101,9 @@ body {
             line-height: 1.1;
             margin: 0;
             letter-spacing: rem(-1.25);
+            &.text-blue {
+                color: c.$purple-dark;
+            }
             @include max-media(lg) {
                 max-width: 100%;
             }
@@ -117,15 +120,18 @@ body {
             padding: .5rem;
             border-radius: r.$small;
             z-index: 10;
+            background-color: c.$white;
             &-light {
                 color: c.$purple;
+                background-color: transparent;
             }
             @include max-media(lg) {
                 background-color: c.$purple;
                 color: c.$white;
-                top: -.425rem;
-                right: -.425rem;
+                top: 0;
+                right: 0;
                 padding: .425rem;
+                border-radius: 0 0 0 r.$small;
             }
             svg {
                 width: 2.5rem;
@@ -146,11 +152,17 @@ body {
             height: 100%; 
             display: flex;
             flex-direction: column;
+            &-extended-top {
+                padding-top: 7.5rem;
+            }
             @include max-media(md) {
                 padding: 3rem 0;
+                &-extended-top {
+                    padding-top: 3rem;
+                }
             }
             &-header {
-                padding-bottom: 5.5rem;
+                padding-bottom: 5rem;
                 flex-shrink: 0;
                 @include max-media(md) {
                     padding-bottom: 2rem;
@@ -204,15 +216,16 @@ body {
                     top: 2rem;
                     right: 2rem;
                     transition: all .25s ease-in-out;
-                    color: c.$black;
+                    color: c.$white;
                     padding: .5rem;
                     border-radius: r.$small;
                     @include max-media(lg) {
                         background-color: c.$purple;
                         color: c.$white;
-                        top: -.425rem;
-                        right: -.425rem;
+                        top: 0;
+                        right: 0;
                         padding: .425rem;
+                        border-radius: 0 r.$medium 0 r.$small;
                     }
                     svg {
                         width: 2.5rem;
@@ -413,45 +426,6 @@ body {
                             margin-bottom: 1.25rem;
                         }
                     }
-                    &-inputbox {
-                        display: block;
-                        width: 100%;
-                        margin-top: .5rem;
-                        @include max-media(md) {
-                            margin-top: .75rem;
-                        }
-                        span {
-                            font-size: 0.875rem;
-                            color: c.$gray;
-                            margin-left: .75rem;
-                            margin-bottom: .375rem;
-                            display: block;
-                            @include max-media(md) {
-                                margin-left: 0;
-                            }
-                        }
-                        input {
-                            display: flex;
-                            align-items: center;
-                            width: 100%;
-                            height: 3.75rem;
-                            padding: 1rem 1.25rem;
-                            border: rem(1) solid c.$gray;
-                            border-radius: r.$small;
-                            font-size: 1.125rem;
-                            font-weight: 600;
-                            color: c.$black;
-                            &, &::placeholder {
-                                transition: all .25s ease-in-out;
-                            }
-                            &:hover, :focus {
-                                border-color: c.$black;
-                            }
-                            &:focus::placeholder {
-                                color: c.$gray;
-                            }
-                        }
-                    }
                     &-button {
                         margin-top: 3rem;
                         @include max-media(md) {
@@ -608,6 +582,573 @@ body {
                         &:hover img {
                             transform: scale(1.08);
                         }
+                    }
+                }
+            }
+        }
+        .calculation1 {
+            &-buttons {
+                display: flex;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 2.5rem;  
+                padding-bottom: 4rem;
+                @include max-media(xl) {
+                    gap: 1.25rem;
+                }
+                @include max-media(lg) {
+                    padding-top: 1rem;
+                }
+                @include max-media(md) {
+                    padding-bottom: 2.5rem;
+                }
+                &-title {
+                    color: c.$purple-dark;
+                    font-size: rem(28);
+                    font-weight: 600;
+                    flex-shrink: 0;
+                    @include max-media(lg) {
+                        font-size: rem(24);
+                        text-align: center;
+                        width: 100%;
+                    }
+                }
+                &-wrapper {
+                    display: flex;
+                    gap: 1.5rem;
+                    flex-wrap: wrap;
+                    flex-shrink: 0;
+                    @include max-media(xl) {
+                        flex-shrink: 11;
+                    }
+                    @include max-media(lg) {
+                        gap: .5rem;
+                        justify-content: center;
+                        align-items: center;
+                    }
+                    .button {
+                        min-width: rem(210);
+                    }
+                }
+            }
+            &-form {
+                &-footer {
+                    display: flex;
+                    justify-content: center;
+                    margin-top: 5rem;
+                    @include max-media(md) {
+                        margin-top: 2.5rem;
+                    }
+                }
+            }
+        }
+        .calculation2 {
+            &-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 3rem;
+                @include max-media(lg) {
+                    flex-direction: column;
+                }
+                &-image {
+                    aspect-ratio: 15/10;
+                    width: 100%;
+                    max-width: rem(450);
+                    height: auto;
+                }
+            }
+            &-table {
+                width: 100%;
+                margin: 0;
+                &-header, &-row {
+                    display: flex;
+                    align-items: center;
+                    border-bottom: rem(1) solid c.$gray;
+                }
+                &-header {
+                    color: c.$gray;
+                    font-size: rem(12);
+                    padding: 0 1rem rem(12);
+                    @include max-media(lg) {
+                        display: none;
+                    }
+                }
+                &-row {
+                    padding: rem(20) 1rem;
+                    color: c.$black;
+                    font-weight: 500;
+                    @include max-media(lg) {
+                        flex-direction: column;
+                        align-items: flex-start;
+                        &:last-child {
+                            border-bottom: 0;
+                        }
+                    }
+                    @include max-media(md) {
+                        gap: 0;
+                        padding: 1.25rem 0;
+                    }
+                }
+                &-footer {
+                    display: flex;
+                    justify-content: flex-end;
+                    margin-top: 3rem;
+                    @include max-media(lg) {
+                        justify-content: center;
+                    }
+                    @include max-media(md) {
+                        justify-content: center;
+                        margin-top: 2rem;
+                    }
+                }
+            }
+            &-col-item {
+                flex: 1 1 auto;
+                padding-right: rem(24);
+                @include max-media(lg) {
+                    width: 100%;
+                    padding-right: 0;
+                    font-weight: 600;
+                    margin-bottom: .75rem;
+                    text-align: left;
+                }
+                @include max-media(md) {
+                    margin-bottom: .25rem;
+                    line-height: 1.4;
+                }
+            }
+            &-col-qty {
+                flex: 0 0 rem(80);
+                text-align: center;
+            }
+            &-col-price {
+                flex: 0 0 rem(120);
+                text-align: right;
+            }
+            &-col-total {
+                flex: 0 0 rem(140);
+                text-align: right;
+            }
+            &-col-qty,
+            &-col-price,
+            &-col-total {
+                @include max-media(lg) {
+                    flex: 0 0 auto;
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    text-align: right;
+                    &::before {
+                        content: attr(data-label);
+                        color: c.$gray;
+                        font-size: rem(14);
+                        font-weight: 400;
+                    }
+                }
+            }
+            &-total-box {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 3rem;
+                border: rem(1) solid c.$gray;
+                border-radius: r.$small;
+                padding: .5rem 1.75rem;
+                background-color: c.$white;
+                min-width: rem(450);
+                @include max-media(lg) {
+                    background-color: c.$purple;
+                    flex-direction: column;
+                    justify-content: center;
+                    padding: 1.25rem 1rem;
+                    gap: .5rem;
+                    min-width: rem(350);
+                }
+                @include max-media(md) {
+                    border: 0;
+                    width: 100%;
+                    gap: .25rem;
+                    min-width: unset;
+                }
+                .total-label {
+                    font-size: rem(18);
+                    font-weight: 500;
+                    color: c.$black;
+                    @include max-media(lg) {
+                        color: c.$white;
+                    }
+                }
+                .total-value {
+                    font-size: rem(26);
+                    font-weight: 600;
+                    color: c.$black;
+                    @include max-media(lg) {
+                        color: c.$white;
+                    }
+                    @include max-media(sm) {
+                        font-size: rem(24);
+                    }
+                }
+            }
+            &-order {
+                display: none;
+                &.active {
+                    display: block;
+                }
+                &-wrapper {
+                    display: grid;
+                    grid-template-columns: repeat(2, minmax(0, 1fr));
+                    gap: 4rem;
+                    align-items: center;
+                    @include max-media(lg) {
+                        grid-template-columns: minmax(0, 1fr);
+                    }
+                    @include max-media(md) {
+                        gap: 2.5rem;
+                    }
+                }
+                &-form {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 1rem;
+                }
+                &-inputbox {
+                    width: 100%;
+                    input {
+                        width: 100%;
+                        height: 4rem;
+                        padding: 1rem 1.25rem;
+                        background-color: rgba(c.$white, 0.5);
+                        border: none;
+                        border-radius: r.$small;
+                        font-size: 1.125rem;
+                        font-weight: 600;
+                        color: c.$purple-dark;
+                        transition: all 0.25s ease-in-out;
+                        font-size: rem(20);
+                        &::placeholder {
+                            color: c.$purple-dark;
+                        }
+                        &:hover, &:focus {
+                            background-color: rgba(c.$white, 0.7);
+                            outline: none;
+                        }
+                        @include max-media(md) {
+                            height: 3.5rem;
+                            font-size: rem(18);
+                        }
+                    }
+                }
+                &-content {
+                    text-align: right;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-end;
+                    @include max-media(lg) {
+                        text-align: center;
+                        align-items: center;
+                    }
+                }
+                &-title {
+                    display: block;
+                    font-size: rem(55);
+                    font-weight: 600;
+                    line-height: 1.1;
+                    margin: 0 0 3.5rem 0;
+                    letter-spacing: rem(-1.25);
+                    color: c.$white;
+                    @include max-media(xxl) {
+                        font-size: rem(50);
+                    }
+                    @include max-media(lg) {
+                        margin: 0 0 1.75rem 0;
+                    }
+                    @include max-media(md) {
+                        font-size: rem(34);
+                        margin: 0 0 1.25rem 0;
+                    }
+                }
+                &-desc {
+                    font-size: rem(16);
+                    color: c.$white;
+                    max-width: rem(420);
+                    margin-bottom: 3.5rem;
+                    line-height: 1.5;
+                    width: 100%;
+                    @include max-media(lg) {
+                        margin: 0 auto;
+                    }
+                }
+                &-buttons {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 1.25rem;
+                    align-items: flex-end;
+                    @include max-media(lg) {
+                        width: 100%;
+                        align-items: center;
+                        gap: 1rem;
+                        .button {
+                            justify-content: center;
+                        }
+                    }
+                }
+            }
+            &-final {
+                display: none;
+                &.active {
+                    display: block;
+                }
+                color: c.$white;
+                &-section {
+                    margin-bottom: 4rem;
+                    @include max-media(md) {
+                        margin-bottom: 2.5rem;
+                    }
+                }
+                &-title {
+                    display: block;
+                    font-size: rem(55);
+                    font-weight: 600;
+                    line-height: 1.1;
+                    margin: 0 0 4rem 0;
+                    letter-spacing: rem(-1.25);
+                    color: c.$white;
+                    @include max-media(xxl) {
+                        font-size: rem(50);
+                    }
+                    @include max-media(md) {
+                        font-size: rem(34);
+                        margin: 0 0 2.5rem 0;
+                    }
+                }
+                &-subtitle {
+                    display: block;
+                    font-size: rem(34);
+                    font-weight: 600;
+                    line-height: 1.1;
+                    margin: 0 0 1rem 0;
+                    letter-spacing: rem(-0.5);
+                    color: c.$white;
+                    @include max-media(lg) {
+                        margin-bottom: 1.25rem;
+                    }
+                    @include max-media(md) {
+                        font-size: rem(28);
+                        margin-bottom: 1rem;
+                    }
+                }
+                &-grid {
+                    display: grid;
+                    grid-template-columns: repeat(2, minmax(0, 1fr));
+                    gap: 1.25rem;
+                    padding-bottom: 1.5rem;
+                    @include max-media(lg) {
+                        grid-template-columns: minmax(0, 1fr);
+                    }
+                    @include max-media(md) {
+                        gap: 1rem;
+                    }
+                }
+                &-shipping {
+                    &-fields {
+                        padding-top: 3rem;
+                        .calculation2-final-grid {
+                            padding-top: 1.25rem;
+                            padding-bottom: 0;
+                            @include max-media(md) {
+                                padding-top: 1rem;
+                            }
+                        }
+                    }
+                    h3 {
+                        margin: 0;
+                    }
+                }
+                &-inputbox {
+                    width: 100%;
+                    input {
+                        width: 100%;
+                        height: 4rem;
+                        padding: 1rem 1.25rem;
+                        background-color: rgba(c.$white, 0.5);
+                        border: none;
+                        border-radius: r.$small;
+                        font-size: rem(20);
+                        font-weight: 600;
+                        color: c.$purple-dark;
+                        transition: all 0.25s ease-in-out;
+                        &::placeholder {
+                            color: c.$purple-dark;
+                        }
+                        &:hover, &:focus {
+                            background-color: rgba(c.$white, 0.7);
+                            outline: none;
+                        }
+                        @include max-media(md) {
+                            height: 3.5rem;
+                            font-size: rem(18);
+                        }
+                    }
+                }
+                &-columns {
+                    display: grid;
+                    grid-template-columns: repeat(2, minmax(0, 1fr));
+                    gap: 3rem;
+                    @include max-media(lg) {
+                        grid-template-columns: minmax(0, 1fr);
+                        gap: 2.5rem;
+                    }
+                }
+                &-col {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 1.25rem;
+                    @include max-media(md) {
+                        gap: 1rem;
+                    }
+                }
+                &-radiobox {
+                    display: flex;
+                    align-items: center;
+                    width: 100%;
+                    height: 4rem;
+                    padding: 1rem 1.25rem;
+                    background-color: rgba(c.$white, 0.5);
+                    border-radius: r.$small;
+                    cursor: pointer;
+                    transition: all 0.25s ease-in-out;
+                    color: c.$purple-dark;
+                    font-size: rem(20);
+                    font-weight: 500;
+                    @include max-media(md) {
+                        height: auto;
+                        min-height: 3.5rem;
+                        font-size: rem(16);
+                        flex-wrap: wrap;
+                    }
+                    &:hover {
+                        background-color: rgba(c.$white, 0.7);
+                    }
+                    input {
+                        display: none;
+                        &:checked + .radio-mark {
+                            background-color: c.$purple-dark;
+                        }
+                        &:checked + .radio-mark svg {
+                            opacity: 1;
+                            visibility: visible;
+                        }
+                    }
+                    .radio-mark {
+                        width: 1.5rem;
+                        height: 1.5rem;
+                        border: rem(1) solid c.$purple-dark;
+                        border-radius: rem(6);
+                        margin-right: 1rem;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        flex-shrink: 0;
+                        transition: all 0.25s ease-in-out;
+                        svg {
+                            width: 1rem;
+                            height: 1rem;
+                            color: c.$white;
+                            opacity: 0;
+                            visibility: hidden;
+                            transition: all 0.25s ease-in-out;
+                        }
+                    }
+                    .radio-text {
+                        flex-grow: 1;
+                        text-align: left;
+                    }
+                    .radio-price {
+                        text-align: right;
+                        @include max-media(md) {
+                            width: 100%;
+                            padding-left: 2.5rem;
+                            text-align: left;
+                            font-size: .75rem;
+                        }
+                    }
+                }
+                &-note {
+                    font-size: 1rem;
+                    color: c.$white;
+                    line-height: 1.4;
+                    opacity: 0.8;
+                    margin: .25rem 0 0 0;
+                    padding-left: 1.25rem;
+                    @include max-media(lg) {
+                        padding-left: 0;
+                    }
+                }
+                &-checkbox {
+                    display: inline-flex;
+                    align-items: center;
+                    cursor: pointer;
+                    color: c.$white;
+                    margin-left: 1.25rem;
+                    font-size: 1rem;
+                    text-align: left;
+                    @include max-media(lg) {
+                        margin: 0 auto;
+                    }
+                    input {
+                        display: none;
+                        &:checked + .checkmark {
+                            svg {
+                                opacity: 1;
+                                visibility: visible;
+                            }
+                        }
+                    }
+                    .checkmark {
+                        width: 1.5rem;
+                        height: 1.5rem;
+                        background-color: rgba(c.$white, 0.5);
+                        border-radius: rem(6);
+                        margin-right: .75rem;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        transition: all 0.2s;
+                        flex-shrink: 0;
+                        svg {
+                            width: 1rem;
+                            height: 1rem;
+                            color: c.$purple-dark;
+                            opacity: 0;
+                            visibility: hidden;
+                            transition: all 0.2s;
+                        }
+                    }
+                    a {
+                        color: c.$white;
+                        text-decoration: underline;
+                        text-underline-offset: 3px;
+                        &:hover {
+                            text-decoration: none;
+                        }
+                    }
+                }
+                &-submit {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-end;
+                    gap: 2.5rem;
+                    margin-top: 1rem;
+                    @include max-media(lg) {
+                        margin-top: 2.75rem;
+                        align-items: center;
+                    }
+                    @include max-media(md) {
+                        margin-top: 2.25rem;
+                        gap: 2.25rem;
                     }
                 }
             }

@@ -69,6 +69,10 @@
                     font-size: rem(22);
                     line-height: 1.25;
                     font-weight: 600;
+                    @include max-media(md) { 
+                        padding: .5rem 1rem;
+                        font-size: rem(18);
+                    }
                 }
 
                 &:hover .productbox-item-image-main-img {
@@ -312,6 +316,7 @@
             margin-left: .75rem;
             margin-bottom: rem(6);
             display: block;
+            text-align: left;
         }
         &-card {
             position: absolute;

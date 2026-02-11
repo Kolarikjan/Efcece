@@ -133,7 +133,7 @@
             right: 0;
             width: rem(350);
             height: 100dvh;
-            z-index: 999;
+            z-index: 9999;
             display: flex !important;
             align-items: center;
             justify-content: center;
@@ -147,7 +147,6 @@
             }
             &.active {    
                 transform: translateX(0);
-                box-shadow: 0 0 50rem 50rem rgba(c.$purple, .35);
             }    
             ul {
                 flex-direction: column;
@@ -165,6 +164,10 @@
                 right: 1rem;
                 width: 2rem;
                 height: 2rem;
+                &:hover {
+                    color: c.$white;
+                    opacity: .5;
+                }
             }
         }
     }
